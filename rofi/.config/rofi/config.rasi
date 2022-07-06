@@ -3,7 +3,7 @@ configuration {
     display-window: "Windows:";
     display-power: "Powermenu:";
     drun-display-format: "{icon} {name}";
-    modi: "window,run,drun,power";
+    modi: "window,run,drun";
     show-icons: false;
     icon-theme: "Papirus";
     font: "DejaVuSansMono Nerd Font Mono 11";

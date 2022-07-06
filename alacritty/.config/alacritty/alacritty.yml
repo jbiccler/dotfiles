@@ -334,5 +334,5 @@ color_schemes:
 
 
 
-colors: *macchiato
+colors: *mocha
 
