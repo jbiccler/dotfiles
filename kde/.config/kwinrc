@@ -15,7 +15,7 @@ Active=true
 LatitudeAuto=51.1384
 LongitudeAuto=3.3382
 Mode=Times
-NightTemperature=4700
+NightTemperature=4900
 
 [Script-bismuth]
 enableFloatingLayout=true

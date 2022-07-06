@@ -5,14 +5,13 @@
 #### AUTOSTART ####
 
 sxhkd &
-picom  --config $HOME/.config/picom.conf &
+picom  --experimental-backends --config $HOME/.config/picom.conf &
 
-feh --no-fehbg --randomize --bg-fill "/mnt/second_ssd/Users/Jaron/MEGA/Afbeeldingen/Background/Peak Aesthetics/"*
+feh --randomize --bg-fill "/mnt/second_ssd/Users/Jaron/MEGA/Afbeeldingen/Background/Peak Aesthetics/"* &
 
-
-bspc monitor DVI-D-0 -d I IV
-bspc monitor HDMI-0 -d II V
-bspc monitor HDMI-1-2 -d III VI
+bspc monitor DVI-D-0 -d 1 4
+bspc monitor HDMI-0 -d 2 5
+bspc monitor HDMI-1-2 -d 3 6
 
 
 gap=8
@@ -60,15 +59,15 @@ bspc config border_width 2
 
 bspc rule -a yakuake state=floating
 bspc rule -a systemsettings state=floating
-bspc rule -a Plasma state=floating border=off manage=on
-bspc rule -a plasma-desktop state=floating border=off manage=on
-bspc rule -a win7 state=floating border=off manage=on
-bspc rule -a krunner state=floating border=off manage=on
-bspc rule -a Kmix state=floating border=off manage=on
-bspc rule -a Klipper state=floating border=off manage=on
-bspc rule -a Plasmoidviewer state=floating border=off manage=on
-bspc rule -a plasmashell state=notification border=off manage=on
+bspc rule -a Plasma state=floating border=off
+bspc rule -a plasma-desktop state=floating border=off
+bspc rule -a win7 state=floating border=off
+bspc rule -a krunner state=floating border=off
+bspc rule -a Kmix state=floating border=off
+bspc rule -a Klipper state=floating border=off
+bspc rule -a Plasmoidviewer state=floating border=off
 bspc rule -a firefox private=on
+bspc rule -a '*:*:Picture-in-Picture' state=floating
 
 
 ##  Autogap adjusts windowgap automatically according to the number of
