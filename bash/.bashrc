@@ -90,6 +90,11 @@ fi
 
 unset use_color safe_term match_lhs sh
 
+## aliases
+alias ll="ls -lah"
+# Print my public IP
+alias myip='curl ipinfo.io/ip'
+
 #alias cp="cp -i"                          # confirm before overwriting something
 #alias df='df -h'                          # human-readable sizes
 #alias free='free -m'                      # show sizes in MB

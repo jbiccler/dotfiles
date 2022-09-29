@@ -47,7 +47,7 @@ super + shift + g
 	bspc node -s biggest
 
 # Application Launcher
-super + f1
+super + F12
   qdbus org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.activateLauncherMenu
 
 # Logout
@@ -145,6 +145,10 @@ super + ctrl + space
 super + ctrl + shift + space
 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
+super + shift + p
+    bspc node -n last.!automatic
+
+
 #
 # move/resize
 #
@@ -178,9 +182,57 @@ super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
 # cycle windows
-alt + {_,shift + }Tab
-	bspc node -f {next.local,prev.local}
+#alt + {_,shift + }Tab
+#	bspc node -f {next.local,prev.local}
 
+# Rotate tree
+alt + {_,shift}Tab
+    bspc node @/ -C {forward,backward}
+
+
+#####
+# scratchpad
+# https://github.com/noctuid/tdrop
+# https://my-take-on.tech/2020/07/03/some-tricks-for-sxhkd-and-bspwm/
+#####
+
+# negative -w arg to account for a border width (default: 100%)
+alt + 1
+    tdrop -ma -w 50% -h 50% -y 16 -x 25% alacritty --class=tdrop -t tdrop
+
+#alt + 2
+#	"$HOME"/.config/bspwm/bspwm-toggle-visibility.sh keepassxc
+
+#alt + 3
+#	"$HOME"/.config/bspwm/bspwm-toggle-visibility.sh streamlink-twitch-gui
+
+# negative -w arg to account for a border width (default: 100%)
+#alt + 4
+#    tdrop -m -w 50% -h 50% -y 16 -x 25% keepassxc --class=keepasxc -t tdrop
+
+alt + 2
+	tdrop -ma -a -w 50% -h 50% -y 16 -x 25% -n 1 current
+
+alt + 3
+	tdrop -ma -a -w 50% -h 50% -y 16 -x 25% -n 2 current
+
+alt + 4
+	tdrop -ma -a -w 50% -h 50% -y 16 -x 25% -n 3 current
+
+alt + 5
+	tdrop -ma -a -w 50% -h 50% -y 16 -x 25% -n 4 current
+
+alt + ctrl + 2
+	tdrop -n 1 --clear current
+
+alt + ctrl + 3
+	tdrop -n 2 --clear current
+
+alt + ctrl + 4
+	tdrop -n 3 --clear current
+
+alt + ctrl + 5
+	tdrop -n 4 --clear current
 
 #
 # Media keys
@@ -205,6 +257,10 @@ XF86MonBrightnessUp
 XF86Sleep
 	systemctl suspend
 
+
+# take screenshot
+super + shift + s
+	flameshot gui -p /home/jaron/Pictures/Screenshots/
 
 # Toggle compositing
 super + ctrl + space

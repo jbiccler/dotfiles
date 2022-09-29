@@ -1,13 +1,12 @@
 #! /bin/sh
 
-#! /bin/sh
-
 #### AUTOSTART ####
 
-sxhkd &
-picom  --experimental-backends --config $HOME/.config/picom.conf &
 
+#picom  --experimental-backends --config $HOME/.config/picom.conf &
 feh --randomize --bg-fill "/mnt/second_ssd/Users/Jaron/MEGA/Afbeeldingen/Background/Peak Aesthetics/"* &
+/usr/lib/polkit-kde-authentication-agent-1 &
+sxhkd &
 
 bspc monitor DVI-D-0 -d 1 4
 bspc monitor HDMI-0 -d 2 5
@@ -25,13 +24,27 @@ bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
 bspc config window_gap $gap;
-#bspc config top_padding $(($PANEL_HEIGHT-$gap))
-#bspc config left_padding -$gap
-#bspc config right_padding -$gap
 
-bspc config left_padding $gap
-bspc config right_padding $gap
-bspc config bottom_padding 26+$gap
+#bspc config left_padding $gap
+#bspc config right_padding $gap
+#bspc config bottom_padding 26+$gap
+
+bspc config -m DVI-D-0 top_padding $gap
+bspc config -m HDMI-0 top_padding $gap
+bspc config -m HDMI-1-2 top_padding $gap
+
+bspc config -m DVI-D-0 bottom_padding $gap
+bspc config -m HDMI-0 bottom_padding 26+$gap
+bspc config -m HDMI-1-2 bottom_padding $gap
+
+bspc config -m DVI-D-0 left_padding $gap
+bspc config -m HDMI-0 left_padding $gap
+bspc config -m HDMI-1-2 left_padding $gap
+
+bspc config -m DVI-D-0 right_padding $gap
+bspc config -m HDMI-0 right_padding $gap
+bspc config -m HDMI-1-2 right_padding $gap
+
 
 bspc config borderless_monocle            true
 bspc config gapless_monocle               true
@@ -68,7 +81,21 @@ bspc rule -a Klipper state=floating border=off
 bspc rule -a Plasmoidviewer state=floating border=off
 bspc rule -a firefox private=on
 bspc rule -a '*:*:Picture-in-Picture' state=floating
+bspc rule -a torguard state=floating
+bspc rule -a TorGuard state=floating
+bspc rule -a sun-awt-X11-XFramePeer state=floating
 
+
+windowwidth=1200
+windowheight=800
+
+screenwidth=$(xdpyinfo | awk -F'[ x]'+ '/dimensions:/{print $3}')
+screenheight=$(xdpyinfo | awk -F'[ x]+' '/dimensions:/{print $4}')
+windowx=$(("$screenwidth"/2-"$windowwidth"/2))
+windowy=$(("$screenheight"/2-"$windowheight"/2))
+
+bspc rule -a KeePassXC state=floating rectangle="$windowwidth"x"$windowheight"+"$windowx"+"$windowy"
+bspc rule -a streamlink-twitch-gui state=floating
 
 ##  Autogap adjusts windowgap automatically according to the number of
 ##  windows on the desktop. Using it disables negative window gap.

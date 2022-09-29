@@ -151,7 +151,7 @@ LookAndFeelPackage=Catppuccin
 [KFileDialog Settings]
 Allow Expansion=false
 Automatically select filename extension=true
-Breadcrumb Navigation=true
+Breadcrumb Navigation=false
 Decoration position=2
 LocationCombo Completionmode=5
 PathCombo Completionmode=5
@@ -167,6 +167,9 @@ Sort hidden files last=false
 Sort reversed=true
 Speedbar Width=133
 View Style=DetailTree
+
+[PreviewSettings]
+MaximumRemoteSize=0
 
 [WM]
 activeBackground=30,30,41
