@@ -1,0 +1,27 @@
+# Static information about the filesystems.
+# See fstab(5) for details.
+
+# <file system> <dir> <type> <options> <dump> <pass>
+# /dev/sda6
+UUID=89f9aca8-9065-4233-a564-48f49e8cd409	/         	ext4      	rw,relatime	0 1
+
+# /dev/sda5
+UUID=0E04-6A2F      	/boot     	vfat      	rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro	0 2
+
+# /dev/sdd3
+UUID=b5faac0d-1e90-46f3-93dd-82ffdbe30535	/home     	ext4      	rw,relatime	0 2
+
+# /dev/sdd2
+UUID=aba48417-e4fa-4d64-8a8a-a04bc91c388d	none      	swap      	defaults  	0 0
+
+# /dev/sda4
+PARTUUID=643da90e-3cda-40fc-8fb7-a5ab0307e64f   /mnt/MainSSD ntfs-3g defaults 0 0
+
+# /dev/sdb1
+PARTUUID=78538dac-7ab6-4b3d-b910-ccb5efc8d27b   /mnt/MainHDD ntfs-3g defaults 0 0
+
+# /dev/sdc1
+PARTUUID=02dd60c0-caee-4e5e-bd90-d03f862187eb   /mnt/SecondHDD ntfs-3g defaults 0 0
+
+# /dev/sdd1
+PARTUUID=44984dc7-5e0f-4618-a7ca-0d0c4d66aa07   /mnt/MainSSD ntfs-3g defaults 0 0
