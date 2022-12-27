@@ -1,16 +1,27 @@
 #! /bin/sh
 
 #### AUTOSTART ####
+# Set display from arandr saved script
+sh ~/.config/bspwm/monitor.sh &
+
+# Notifications
+/usr/bin/dunst &
+nm-applet --indicator &
 
 
 #picom  --experimental-backends --config $HOME/.config/picom.conf &
-feh --randomize --bg-fill "/mnt/second_ssd/Users/Jaron/MEGA/Afbeeldingen/Background/Peak Aesthetics/"* &
-/usr/lib/polkit-kde-authentication-agent-1 &
-sxhkd &
+feh --randomize --bg-fill "/mnt/SecondSSD/Users/Jaron/MEGA/Afbeeldingen/Background/Peak Aesthetics/"* &
+# /usr/lib/polkit-kde-authentication-agent-1 &
+# Polkit
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+sxhkd &sudo
 
-bspc monitor DVI-D-0 -d 1 4
-bspc monitor HDMI-0 -d 2 5
-bspc monitor HDMI-1-2 -d 3 6
+bspc monitor DVI-D-0 -d I II
+bspc monitor HDMI-0 -d III IV
+bspc monitor HDMI2 -d V VI
+
+# Bar
+~/.config/polybar/launch_polybar.sh &
 
 
 gap=8
@@ -85,9 +96,11 @@ bspc rule -a torguard state=floating
 bspc rule -a TorGuard state=floating
 bspc rule -a sun-awt-X11-XFramePeer state=floating
 
+bspc rule -a Wrapper-2.0 state=floating border=off focus=on
+bspc rule -a Wrapper-2.0 state=floating border=off focus=on
 
 windowwidth=1200
-windowheight=800
+windowheight=800r
 
 screenwidth=$(xdpyinfo | awk -F'[ x]'+ '/dimensions:/{print $3}')
 screenheight=$(xdpyinfo | awk -F'[ x]+' '/dimensions:/{print $4}')
@@ -96,6 +109,8 @@ windowy=$(("$screenheight"/2-"$windowheight"/2))
 
 bspc rule -a KeePassXC state=floating rectangle="$windowwidth"x"$windowheight"+"$windowx"+"$windowy"
 bspc rule -a streamlink-twitch-gui state=floating
+bspc rule -a nwjs_kjlcknihpadniagphehmpojkkdigigjp state=floating #streamlink
+
 
 ##  Autogap adjusts windowgap automatically according to the number of
 ##  windows on the desktop. Using it disables negative window gap.

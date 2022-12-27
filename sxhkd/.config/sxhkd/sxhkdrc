@@ -27,7 +27,7 @@ super + alt + {q,r}
 
 # close and kill
 # super + {_,shift + }w
-super + x
+super + {_,shift + }x
   bspc node -{c,k}
 
 # alternate between the tiled and monocle layout
@@ -260,7 +260,7 @@ XF86Sleep
 
 # take screenshot
 super + shift + s
-	flameshot gui -p /home/jaron/Pictures/Screenshots/
+	flameshot gui -p ~/Pictures/Screenshots/
 
 # Toggle compositing
 super + ctrl + space
