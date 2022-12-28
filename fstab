@@ -24,4 +24,4 @@ PARTUUID=78538dac-7ab6-4b3d-b910-ccb5efc8d27b   /mnt/MainHDD ntfs-3g defaults 0 
 PARTUUID=02dd60c0-caee-4e5e-bd90-d03f862187eb   /mnt/SecondHDD ntfs-3g defaults 0 0
 
 # /dev/sdd1
-PARTUUID=44984dc7-5e0f-4618-a7ca-0d0c4d66aa07   /mnt/MainSSD ntfs-3g defaults 0 0
+PARTUUID=44984dc7-5e0f-4618-a7ca-0d0c4d66aa07   /mnt/SecondSSD ntfs-3g defaults 0 0
