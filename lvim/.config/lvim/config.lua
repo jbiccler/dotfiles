@@ -100,6 +100,10 @@ vim.keymap.set("n", "<leader>sm", ":MaximizerToggle<CR>") -- toggle split window
 vim.keymap.set('n',"<M-h>", '^')
 vim.keymap.set('n',"<M-l>", 'g_')
 
+-- Write all buffers before navigating from Vim to tmux pane
+-- let g:tmux_navigator_save_on_switch = 1
+-- let g:tmux_navigator_preserve_zoom = 1
+
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
@@ -220,6 +224,15 @@ vim.api.nvim_set_keymap("n", "<M-s>", ":HopPattern<cr>", { silent = true })
     vim.api.nvim_set_keymap("n", "S", ":HopWord<cr>", { silent = true })
   end,
 },
+{
+  'sudormrfbin/cheatsheet.nvim',
+
+  requires = {
+    {'nvim-telescope/telescope.nvim'},
+    {'nvim-lua/popup.nvim'},
+    {'nvim-lua/plenary.nvim'},
+  }},
+{'christoomey/vim-tmux-navigator'},
 }
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 vim.api.nvim_create_autocmd("BufEnter", {
