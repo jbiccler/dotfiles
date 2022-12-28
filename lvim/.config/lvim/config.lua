@@ -7,7 +7,7 @@ a global executable or a path to
 an executable
 ]]
 -- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
-
+-- place this in one of your configuration file(s)
 -- general
 
 vim.opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
@@ -45,6 +45,10 @@ lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
 -- vim.keymap.del("n", "<C-Up>")
 -- override a default keymapping
 lvim.keys.normal_mode["<C-q>"] = ":q<cr>" -- or vim.keymap.set("n", "<C-q>", ":q<cr>" )
+
+
+-- Bufferline
+lvim.builtin.bufferline.options.numbers = 'buffer_id'
 
 -- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
 -- we use protected-mode (pcall) just in case the plugin wasn't loaded yet.
@@ -106,18 +110,18 @@ lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
-  "bash",
-  "c",
-  "javascript",
-  "json",
-  "lua",
-  "python",
-  "typescript",
-  "tsx",
-  "css",
-  "rust",
-  "java",
-  "yaml",
+"bash",
+"c",
+"javascript",
+"json",
+"lua",
+"python",
+"typescript",
+"tsx",
+"css",
+"rust",
+"java",
+"yaml",
 }
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
@@ -167,47 +171,56 @@ lvim.builtin.treesitter.highlight.enable = true
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
-  { command = "black", filetypes = { "python" } },
-  { command = "isort", filetypes = { "python" } },
-  {
-    -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
-    command = "prettier",
-    ---@usage arguments to pass to the formatter
-    -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
-    extra_args = { "--print-with", "100" },
-    ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
-    filetypes = { "typescript", "typescriptreact" },
-  },
+{ command = "black", filetypes = { "python" } },
+{ command = "isort", filetypes = { "python" } },
+{
+-- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
+command = "prettier",
+---@usage arguments to pass to the formatter
+-- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
+extra_args = { "--print-with", "100" },
+---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
+filetypes = { "typescript", "typescriptreact" },
+},
 }
 
 -- -- set additional linters
 local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
-  { command = "flake8", filetypes = { "python" } },
-  {
-    -- each linter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
-    command = "shellcheck",
-    ---@usage arguments to pass to the formatter
-    -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
-    extra_args = { "--severity", "warning" },
-  },
-  {
-    command = "codespell",
-    ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
-    filetypes = { "javascript", "python" },
-  },
+{ command = "flake8", filetypes = { "python" } },
+{
+-- each linter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
+command = "shellcheck",
+---@usage arguments to pass to the formatter
+-- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
+extra_args = { "--severity", "warning" },
+},
+{
+command = "codespell",
+---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
+filetypes = { "javascript", "python" },
+},
 }
 
 -- Additional Plugins
 lvim.plugins = {
-    {
-      "folke/trouble.nvim",
-      cmd = "TroubleToggle",
-    },
-    {"szw/vim-maximizer"},
-    {"tpope/vim-surround"},
+{
+  "folke/trouble.nvim",
+  cmd = "TroubleToggle",
+},
+{"szw/vim-maximizer"},
+{"tpope/vim-surround"},
+{
+"phaazon/hop.nvim",
+event = "BufRead",
+config = function()
+require("hop").setup()
+vim.api.nvim_set_keymap("n", "s", ":HopChar2<cr>", { silent = true })
+vim.api.nvim_set_keymap("n", "<M-s>", ":HopPattern<cr>", { silent = true })
+    vim.api.nvim_set_keymap("n", "S", ":HopWord<cr>", { silent = true })
+  end,
+},
 }
-
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 vim.api.nvim_create_autocmd("BufEnter", {
   pattern = { "*.json", "*.jsonc" },
