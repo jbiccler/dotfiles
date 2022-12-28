@@ -10,7 +10,7 @@ an executable
 -- place this in one of your configuration file(s)
 -- general
 
-vim.opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
+vim.opt.clipboard = "unnamed"
 vim.opt.ignorecase = true -- ignore case in search patterns
 vim.opt.smartcase = true -- smart case
 vim.opt.smartindent = true -- make indenting smarter again
@@ -23,7 +23,6 @@ vim.opt.spell = false
 vim.opt.spelllang = "en"
 vim.opt.scrolloff = 8 -- is one of my fav
 vim.opt.sidescrolloff = 8
-vim.opt.clipboard = 'unnamedplus'
 
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = true
@@ -97,8 +96,18 @@ vim.keymap.set("n", "<leader>tx", ":tabclose<CR>") -- close current tab
 vim.keymap.set("n", "<leader>tn", ":tabn<CR>") --  go to next tab
 vim.keymap.set("n", "<leader>tp", ":tabp<CR>") --  go to previous tab
 vim.keymap.set("n", "<leader>sm", ":MaximizerToggle<CR>") -- toggle split window maximization
+-- remap first and last non-blank
 vim.keymap.set('n',"<M-h>", '^')
 vim.keymap.set('n',"<M-l>", 'g_')
+-- leader y copies to system clipboard
+vim.keymap.set({"n", "v"}, "<leader><leader>y", [["+y]])
+vim.keymap.set("n", "<leader><leader>Y", [["+Y]])
+vim.keymap.set("n", "<leader><leader>p", [["+p]])
+vim.keymap.set("n", "<leader><leader>P", [["+P]])
+vim.keymap.set("n", "Q", "<nop>")
+
+-- make executable
+vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 -- Write all buffers before navigating from Vim to tmux pane
 -- let g:tmux_navigator_save_on_switch = 1
