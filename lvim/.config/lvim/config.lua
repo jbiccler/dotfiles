@@ -27,7 +27,7 @@ vim.opt.clipboard = 'unnamedplus'
 
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = true
-lvim.colorscheme = "lunar"
+lvim.colorscheme = "tokyonight"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
@@ -233,6 +233,7 @@ vim.api.nvim_set_keymap("n", "<M-s>", ":HopPattern<cr>", { silent = true })
     {'nvim-lua/plenary.nvim'},
   }},
 {'christoomey/vim-tmux-navigator'},
+{'shaunsingh/nord.nvim'},
 }
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 vim.api.nvim_create_autocmd("BufEnter", {
