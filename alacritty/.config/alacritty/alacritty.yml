@@ -390,3 +390,7 @@ color_schemes:
       white:   '0xacb0d0'
 
 colors: *tokyo-night
+shell:
+  program: /usr/bin/fish
+  args:
+    - --login
