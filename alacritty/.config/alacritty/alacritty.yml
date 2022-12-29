@@ -394,3 +394,6 @@ shell:
   program: /usr/bin/fish
   args:
     - --login
+
+window:
+  opacity: 0.95

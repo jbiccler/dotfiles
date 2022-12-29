@@ -10,7 +10,9 @@ an executable
 -- place this in one of your configuration file(s)
 -- general
 
-vim.opt.clipboard = "unnamed"
+-- vim.opt.clipboard = "autoselect"
+-- vim.g.python3_host_prog = "/usr/bin/python"
+vim.opt.shell = "/bin/bash"
 vim.opt.ignorecase = true -- ignore case in search patterns
 vim.opt.smartcase = true -- smart case
 vim.opt.smartindent = true -- make indenting smarter again
@@ -23,6 +25,7 @@ vim.opt.spell = false
 vim.opt.spelllang = "en"
 vim.opt.scrolloff = 8 -- is one of my fav
 vim.opt.sidescrolloff = 8
+vim.g.transparent_enabled = true
 
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = true
@@ -36,7 +39,6 @@ lvim.leader = "space"
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.keys.normal_mode['<C-z>'] = ':u<cr>'
 lvim.keys.insert_mode["<C-s>"] = "<ESC>:w<cr>a"
-lvim.keys.insert_mode["jk"] = '<ESC>'
 
 lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
@@ -59,7 +61,7 @@ lvim.builtin.telescope.defaults.mappings = {
     ["<C-k>"] = actions.move_selection_previous,
     ["<C-n>"] = actions.cycle_history_next,
     ["<C-p>"] = actions.cycle_history_prev,
-  },
+},
   -- for normal mode
   n = {
     ["<C-j>"] = actions.move_selection_next,
@@ -98,7 +100,9 @@ vim.keymap.set("n", "<leader>tp", ":tabp<CR>") --  go to previous tab
 vim.keymap.set("n", "<leader>sm", ":MaximizerToggle<CR>") -- toggle split window maximization
 -- remap first and last non-blank
 vim.keymap.set('n',"<M-h>", '^')
+vim.keymap.set('v',"<M-h>", '^')
 vim.keymap.set('n',"<M-l>", 'g_')
+vim.keymap.set('v',"<M-l>", 'g_')
 -- leader y copies to system clipboard
 vim.keymap.set({"n", "v"}, "<leader><leader>y", [["+y]])
 vim.keymap.set("n", "<leader><leader>Y", [["+Y]])
@@ -106,8 +110,15 @@ vim.keymap.set("n", "<leader><leader>p", [["+p]])
 vim.keymap.set("n", "<leader><leader>P", [["+P]])
 vim.keymap.set("n", "Q", "<nop>")
 
+vim.keymap.set('i','<C-j>','<ESC>:TmuxNavigateDown<CR>')
+vim.keymap.set('i','<C-k>','<ESC>:TmuxNavigateUp<CR>')
+vim.keymap.set('i','<C-l>','<ESC>:TmuxNavigateRight<CR>')
+vim.keymap.set('i','<C-h>','<ESC>:TmuxNavigateLeft<CR>')
+vim.keymap.set('i','<C-\\>','<ESC>:TmuxNavigatePrevious<CR>')
 -- make executable
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>")
+-- python file
+vim.keymap.set('n', '<leader>r', ":exe \"!tmux send -t 1 'python \" . expand(\"%:p\") . \"' Enter")
 
 -- Write all buffers before navigating from Vim to tmux pane
 -- let g:tmux_navigator_save_on_switch = 1
@@ -243,6 +254,21 @@ vim.api.nvim_set_keymap("n", "<M-s>", ":HopPattern<cr>", { silent = true })
   }},
 {'christoomey/vim-tmux-navigator'},
 {'shaunsingh/nord.nvim'},
+{'ThePrimeagen/vim-be-good'},
+{'xiyaowong/nvim-transparent',
+ enable = true, -- boolean: enable transparent
+ extra_groups = { -- table/string: additional groups that should be cleared
+   -- In particular, when you set it to 'all', that means all available groups
+
+   -- example of akinsho/nvim-bufferline.lua
+   "BufferLineTabClose",
+   "BufferlineBufferSelected",
+   "BufferLineFill",
+   "BufferLineBackground",
+   "BufferLineSeparator",
+   "BufferLineIndicatorSelected",
+ },
+ exclude = {},}
 }
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 vim.api.nvim_create_autocmd("BufEnter", {
