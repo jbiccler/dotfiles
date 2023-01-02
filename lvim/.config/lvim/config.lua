@@ -38,7 +38,7 @@ lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.keys.normal_mode['<C-z>'] = ':u<cr>'
-lvim.keys.insert_mode["<C-s>"] = "<ESC>:w<cr>a"
+lvim.keys.insert_mode["<C-s>"] = "<ESC>:w<cr>l"
 
 lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
@@ -118,8 +118,9 @@ vim.keymap.set('i','<C-\\>','<ESC>:TmuxNavigatePrevious<CR>')
 -- make executable
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>")
 -- python file
-vim.keymap.set('n', '<leader>r', ":exe \"!tmux send -t 1 'python \" . expand(\"%:p\") . \"' Enter")
-
+vim.keymap.set('n', '<leader>r', [[:silent !tmux send-keys -t 1 "python " %:p Enter <CR>]])
+-- general just execute last command
+vim.keymap.set('n', '<leader>R', [[:silent !tmux send-keys -t 1 "\!\!" Enter <CR>]])
 -- Write all buffers before navigating from Vim to tmux pane
 -- let g:tmux_navigator_save_on_switch = 1
 -- let g:tmux_navigator_preserve_zoom = 1
@@ -268,7 +269,16 @@ vim.api.nvim_set_keymap("n", "<M-s>", ":HopPattern<cr>", { silent = true })
    "BufferLineSeparator",
    "BufferLineIndicatorSelected",
  },
- exclude = {},}
+ exclude = {},},
+{
+  'rmagatti/auto-session',
+  config = function()
+    require("auto-session").setup {
+      log_level = "error",
+      auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/"},
+    }
+  end
+}
 }
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 vim.api.nvim_create_autocmd("BufEnter", {
