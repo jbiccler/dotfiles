@@ -25,3 +25,6 @@ PARTUUID=02dd60c0-caee-4e5e-bd90-d03f862187eb   /mnt/SecondHDD ntfs-3g defaults 
 
 # /dev/sdd1
 PARTUUID=44984dc7-5e0f-4618-a7ca-0d0c4d66aa07   /mnt/SecondSSD ntfs-3g defaults 0 0
+
+# laptop drive
+# UUID=FE38B95D38B9159D			  /mnt/MainHDD ntfs defaults 0 2
