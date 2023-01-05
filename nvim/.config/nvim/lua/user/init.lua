@@ -4,6 +4,7 @@
 -- You can think of a Lua "table" as a dictionary like data structure the
 -- normal format is "key = value". These also handle array like data structures
 -- where a value with no key simply has an implicit numeric key
+
 local config = {
 
         -- Configure AstroNvim updates
@@ -26,7 +27,7 @@ local config = {
         },
 
         -- Set colorscheme to use
-        colorscheme = "default_theme",
+        colorscheme = "tokyonight-night",
 
         -- Add highlight groups in any theme
         highlights = {
@@ -42,11 +43,12 @@ local config = {
         options = {
                 opt = {
                         -- set to true or false etc.
-                        relativenumber = false, -- sets vim.opt.relativenumber
+                        relativenumber = true, -- sets vim.opt.relativenumber
                         number = true, -- sets vim.opt.number
                         spell = false, -- sets vim.opt.spell
                         signcolumn = "auto", -- sets vim.opt.signcolumn to auto
                         wrap = false, -- sets vim.opt.wrap
+                        clipboard = "unnamed",
                 },
                 g = {
                         mapleader = " ", -- sets vim.g.mapleader
@@ -217,8 +219,8 @@ local config = {
                         ['<M-h>'] = { '^', desc = 'First non-blank' }, -- remap first and last non-blank
                         ['<M-l>'] = { 'g_', desc = 'Last non-blank' },
                         -- leader copy to system clipboard
-                        ['<leader><leader>y'] = { [["+y]], desc = 'Copy to system clipboard' },
-                        ['<leader><leader>Y'] = { [["+Y]], desc = 'Copy to system clipboard' },
+                        ['<leader><leader>y'] = { '"+y', desc = 'Copy to system clipboard' },
+                        ['<leader><leader>Y'] = { '"+Y', desc = 'Copy to system clipboard' },
                         ['<leader><leader>p'] = { [["+p]], desc = 'Paste from system clipboard' },
                         ['<leader><leader>P'] = { [["+P]], desc = 'Paste from system clipboard' },
                         -- last command to tmux
@@ -229,14 +231,26 @@ local config = {
                         -- hop
                         ['s'] = { ':silent HopChar2<cr>', desc = 'HopChar2' },
                         ['<M-s>'] = { ':silent HopPattern<cr>', desc = 'HopPattern' },
-                        ['S'] = { ':silent HopWord<cr>', desc = 'HopWord' }
+                        ['S'] = { ':silent HopWord<cr>', desc = 'HopWord' },
+                        ['<M-j>'] = { ':m .+1<CR>==', desc = 'Move line down' },
+                        ['<M-k>'] = { ':m .-2<CR>==', desc = 'Move line up' },
                 },
                 i = {
-                        ["<C-s>"] = { "<ESC>:w!<cr>l", desc = 'Save file' }
+                        ["<C-s>"] = { "<ESC>:w!<cr>l", desc = 'Save file' },
+                        ['<M-j>'] = { '<ESC>:m .+1<CR>==gi', desc = 'Move line down' },
+                        ['<M-k>'] = { '<ESC>:m .-2<CR>==gi', desc = 'Move line up' },
                 },
                 v = {
                         ['<M-h>'] = { '^' },
                         ['<M-l>'] = { 'g_' },
+                        ['<M-j>'] = { ":m '>+1<CR>gv=gv", desc = 'Move line down' },
+                        ['<M-k>'] = { ":m '<-2<CR>gv=gv", desc = 'Move line up' },
+
+                        -- leader copy to system clipboard
+                        ['<leader><leader>y'] = { '"+y', desc = 'Copy to system clipboard' },
+                        ['<leader><leader>Y'] = { '"+Y', desc = 'Copy to system clipboard' },
+                        ['<leader><leader>p'] = { [["+p]], desc = 'Paste from system clipboard' },
+                        ['<leader><leader>P'] = { [["+P]], desc = 'Paste from system clipboard' },
                 },
                 t = {
                         -- setting a mapping to false will disable it
@@ -268,7 +282,8 @@ local config = {
                                                 -- Configuration here, or leave empty to use defaults
                                         })
                                 end
-                        }
+                        },
+                        ['folke/tokyonight.nvim'] = {},
                         -- You can disable default plugins as follows:
                         -- ["goolord/alpha-nvim"] = { disable = true },
 
