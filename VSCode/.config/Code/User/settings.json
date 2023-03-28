@@ -1,0 +1,149 @@
+{
+    "code-runner.clearPreviousOutput": true,
+    "code-runner.showExecutionMessage": false,
+    "code-runner.executorMap": {
+        "python": "$pythonPath -u $fullFileName",
+    },
+    "editor.formatOnSave": true,
+    "sync.gist": "dd9b1ec09ee639935675320a6265185d",
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "python.jediEnabled": false,
+    "code-runner.saveFileBeforeRun": true,
+    "vim.easymotion": true,
+    "vim.normalModeKeyBindings": [],
+    "vim.visualModeKeyBindings": [
+        {
+            "before": [
+                ">"
+            ],
+            "after": [
+                ">",
+                "g",
+                "v"
+            ]
+        },
+        {
+            "before": [
+                "<"
+            ],
+            "after": [
+                "<",
+                "g",
+                "v"
+            ]
+        },
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "<leader>",
+                "w"
+            ],
+            "commands": [
+                "workbench.action.splitEditor"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "e"
+            ],
+            "commands": [
+                "workbench.action.toggleSidebarVisibility"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "f"
+            ],
+            "commands": [
+                "revealInExplorer"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "h"
+            ],
+            "after": [
+                "_"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "l"
+            ],
+            "after": [
+                "$"
+            ]
+        }
+    ],
+    "vim.leader": "<space>",
+    "vim.handleKeys": {
+        "<C-a>": false,
+        "<C-f>": false,
+        // VS Code new marker @ next occurence
+        "<C-d>": false,
+        // Copy
+        "<C-c>": false,
+        // Cut
+        "<C-x>": false,
+        // Paste
+        "<C-v>": false,
+        "<C-z>": false,
+        "<C-y>": false
+    },
+    "vim.useSystemClipboard": true,
+    "python.formatting.provider": "black",
+    "csv-preview.separator": ";",
+    "vim.highlightedyank.enable": true,
+    "vim.startInInsertMode": true,
+    "vim.statusBarColorControl": true,
+    "workbench.colorCustomizations": {
+        "statusBar.background": "#5f0000",
+        "statusBar.noFolderBackground": "#5f0000",
+        "statusBar.debuggingBackground": "#5f0000"
+    },
+    "python.languageServer": "Pylance",
+    "latex-workshop.view.pdf.viewer": "tab",
+    "ltex.additionalRules.motherTongue": "en-GB",
+    "ltex.language": "en-GB",
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "terminal.integrated.shellArgs.windows": [
+        "-ExecutionPolicy",
+        "Bypass"
+    ],
+    "jupyter.askForKernelRestart": false,
+    "editor.wordWrap": "on",
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "remote.SSH.remotePlatform": {
+        "139.162.238.135": "linux"
+    },
+    "vim.camelCaseMotion.enable": true,
+    "explorer.copyRelativePathSeparator": "/",
+    "vscode-neovim.neovimExecutablePaths.win32": "C:\\tools\\neovim\\nvim-win64\\bin\\nvim.exe ",
+    "workbench.startupEditor": "none",
+    "vim.smartRelativeLine": true,
+    "editor.lineNumbers": "relative",
+    "update.mode": "manual",
+    "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
+    "[python]": {
+        "editor.formatOnType": true
+    },
+    "editor.inlineSuggest.enabled": true,
+    "git.autofetch": true,
+    "terminal.integrated.defaultProfile.linux": "fish",
+    "terminal.external.linuxExec": "",
+    "workbench.colorTheme": "Tokyo Night Storm",
+    "vscode-neovim.neovimInitVimPaths.linux": "/home/jaron/dotfiles/nvim/.config/nvim/init.lua",
+    "editor.scrollBeyondLastLine": false,
+    "vscode-neovim.useCtrlKeysForInsertMode": false
+}

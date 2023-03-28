@@ -1,6 +1,6 @@
 <center><h1> Dotfiles <br> ~/.* </h1></center>
 
-The dotfiles of my current GNU/Linux EndeavorOS install managed with GNU Stow.
+The dotfiles of my current GNU/Linux [EndeavorOS](https://endeavouros.com/) install managed with [GNU Stow](https://www.gnu.org/software/stow/).
 
 ## Basic workflow:
 
