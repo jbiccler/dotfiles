@@ -1,0 +1,73 @@
+// Place your key bindings in this file to override the defaultsauto[]
+[
+    {
+        "key": "shift+enter",
+        "command": "code-runner.run"
+    },
+    {
+        "key": "ctrl+alt+n",
+        "command": "-code-runner.run"
+    },
+    // keyboard quickfix
+    {
+        "key": "ctrl+.",
+        "command": "keyboard-quickfix.openQuickFix",
+        "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
+    },
+    // use ':' key for commands even if no editor tab is opened
+    {
+        "key": "Shift+.",
+        "command": "vscode-neovim.send",
+        "when": "!inputFocus && !editorTextFocus",
+        "args": ":"
+    },
+    // window navigation
+    {
+        "key": "ctrl+h",
+        "when": "neovim.mode != insert",
+        "command": "workbench.action.navigateLeft"
+    },
+    {
+        "key": "ctrl+l",
+        "when": "neovim.mode != insert",
+        "command": "workbench.action.navigateRight"
+    },
+    {
+        "key": "ctrl+k",
+        "when": "neovim.mode != insert",
+        "command": "workbench.action.navigateUp"
+    },
+    {
+        "key": "ctrl+j",
+        "when": "neovim.mode != insert",
+        "command": "workbench.action.navigateDown"
+    },
+    // Tabs
+    {
+        "key": "shift+h",
+        "when": "neovim.mode != insert",
+        "command": "workbench.action.previousEditor"
+    },
+    {
+        "key": "shift+l",
+        "when": "neovim.mode != insert",
+        "command": "workbench.action.nextEditor"
+    },
+    // Neovim plugin
+    {
+        "key": "ctrl+e",
+        "when": "editorTextFocus && neovim.init && neovim.mode != insert",
+        "command": "workbench.action.toggleSidebarVisibility",
+    },
+    {
+        "key": "ctrl+b",
+        "when": "editorTextFocus && neovim.init && neovim.mode != insert",
+        "command": "workbench.action.toggleSidebarVisibility",
+    },
+    {
+        "command": "vscode-neovim.send",
+        "key": "space w",
+        "when": "editorTextFocus && neovim.init && neovim.mode != insert",
+        "args": "<C-W>"
+    },
+]
