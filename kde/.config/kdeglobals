@@ -24,13 +24,13 @@ IntensityAmount=0
 IntensityEffect=0
 
 [Colors:Button]
-BackgroundAlternate=#f0c6c6
+BackgroundAlternate=16,165,152
 BackgroundNormal=#363a4f
-DecorationFocus=#f0c6c6
-DecorationHover=#363a4f
-ForegroundActive=#f5a97f
+DecorationFocus=0,211,184
+DecorationHover=0,211,184
+ForegroundActive=0,211,184
 ForegroundInactive=#a5adcb
-ForegroundLink=#f4dbd6
+ForegroundLink=0,211,184
 ForegroundNegative=#ed8796
 ForegroundNeutral=#eed49f
 ForegroundNormal=#cad3f5
@@ -40,11 +40,11 @@ ForegroundVisited=#c6a0f6
 [Colors:Complementary]
 BackgroundAlternate=#181926
 BackgroundNormal=#1e2030
-DecorationFocus=#f0c6c6
-DecorationHover=#363a4f
-ForegroundActive=#f5a97f
+DecorationFocus=0,211,184
+DecorationHover=0,211,184
+ForegroundActive=0,211,184
 ForegroundInactive=#a5adcb
-ForegroundLink=#f4dbd6
+ForegroundLink=0,211,184
 ForegroundNegative=#ed8796
 ForegroundNeutral=#eed49f
 ForegroundNormal=#cad3f5
@@ -54,11 +54,11 @@ ForegroundVisited=#c6a0f6
 [Colors:Header]
 BackgroundAlternate=#181926
 BackgroundNormal=#1e2030
-DecorationFocus=#f0c6c6
-DecorationHover=#363a4f
-ForegroundActive=#f5a97f
+DecorationFocus=0,211,184
+DecorationHover=0,211,184
+ForegroundActive=0,211,184
 ForegroundInactive=#a5adcb
-ForegroundLink=#f4dbd6
+ForegroundLink=0,211,184
 ForegroundNegative=#ed8796
 ForegroundNeutral=#eed49f
 ForegroundNormal=#cad3f5
@@ -66,27 +66,27 @@ ForegroundPositive=#a6da95
 ForegroundVisited=#c6a0f6
 
 [Colors:Selection]
-BackgroundAlternate=#f0c6c6
-BackgroundNormal=#f0c6c6
-DecorationFocus=#f0c6c6
-DecorationHover=#363a4f
-ForegroundActive=#f5a97f
-ForegroundInactive=#1e2030
-ForegroundLink=#f4dbd6
+BackgroundAlternate=10,159,146
+BackgroundNormal=10,159,146
+DecorationFocus=0,211,184
+DecorationHover=0,211,184
+ForegroundActive=0,211,184
+ForegroundInactive=255,255,255
+ForegroundLink=0,211,184
 ForegroundNegative=#ed8796
 ForegroundNeutral=#eed49f
-ForegroundNormal=#181926
+ForegroundNormal=255,255,255
 ForegroundPositive=#a6da95
 ForegroundVisited=#c6a0f6
 
 [Colors:Tooltip]
 BackgroundAlternate=#1e2030
 BackgroundNormal=#24273a
-DecorationFocus=#f0c6c6
-DecorationHover=#363a4f
-ForegroundActive=#f5a97f
+DecorationFocus=0,211,184
+DecorationHover=0,211,184
+ForegroundActive=0,211,184
 ForegroundInactive=#a5adcb
-ForegroundLink=#f4dbd6
+ForegroundLink=0,211,184
 ForegroundNegative=#ed8796
 ForegroundNeutral=#eed49f
 ForegroundNormal=#cad3f5
@@ -96,11 +96,11 @@ ForegroundVisited=#c6a0f6
 [Colors:View]
 BackgroundAlternate=#1e2030
 BackgroundNormal=#24273a
-DecorationFocus=#f0c6c6
-DecorationHover=#363a4f
-ForegroundActive=#f5a97f
+DecorationFocus=0,211,184
+DecorationHover=0,211,184
+ForegroundActive=0,211,184
 ForegroundInactive=#a5adcb
-ForegroundLink=#f4dbd6
+ForegroundLink=0,211,184
 ForegroundNegative=#ed8796
 ForegroundNeutral=#eed49f
 ForegroundNormal=#cad3f5
@@ -110,11 +110,11 @@ ForegroundVisited=#c6a0f6
 [Colors:Window]
 BackgroundAlternate=#181926
 BackgroundNormal=#1e2030
-DecorationFocus=#f0c6c6
-DecorationHover=#363a4f
-ForegroundActive=#f5a97f
+DecorationFocus=0,211,184
+DecorationHover=0,211,184
+ForegroundActive=0,211,184
 ForegroundInactive=#a5adcb
-ForegroundLink=#f4dbd6
+ForegroundLink=0,211,184
 ForegroundNegative=#ed8796
 ForegroundNeutral=#eed49f
 ForegroundNormal=#cad3f5
@@ -126,20 +126,22 @@ DirSelectDialog Size=847,602
 History Items[$e]=file:$HOME/MEGA/Afbeeldingen/Background/Peak Aesthetics,file:$HOME/MEGA/Afbeeldingen/Background/Peak Aesthetics,file:$HOME/MEGA/Afbeeldingen/Background/Peak Aesthetics,file:$HOME/MEGA/Afbeeldingen/Background/Peak Aesthetics
 
 [General]
-AccentColor=0,0,0,0
+AccentColor=0,211,184
 BrowserApplication=firefox.desktop
 ColorScheme=CatppuccinMacchiato
 ColorSchemeHash=367978722a8042f110ea0bd0221e8c9e02aee5fd
+LastUsedCustomAccentColor=0,211,184
 TerminalApplication=alacritty
 TerminalService=Alacritty.desktop
 
 [KDE]
 LookAndFeelPackage=Catppuccin-Macchiato
+SingleClick=false
 
 [KFileDialog Settings]
 Allow Expansion=false
 Automatically select filename extension=true
-Breadcrumb Navigation=true
+Breadcrumb Navigation=false
 Decoration position=2
 LocationCombo Completionmode=5
 PathCombo Completionmode=5

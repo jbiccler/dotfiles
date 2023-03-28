@@ -1,5 +1,5 @@
 [$Version]
-update_info=kwin.upd:replace-scalein-with-scale,kwin.upd:port-minimizeanimation-effect-to-js,kwin.upd:port-scale-effect-to-js,kwin.upd:port-dimscreen-effect-to-js,kwin.upd:auto-bordersize,kwin.upd:animation-speed,kwin.upd:desktop-grid-click-behavior,kwin.upd:no-swap-encourage,kwin.upd:make-translucency-effect-disabled-by-default,kwin.upd:remove-flip-switch-effect,kwin.upd:remove-cover-switch-effect,kwin.upd:remove-cubeslide-effect,kwin.upd:remove-xrender-backend,kwin.upd:enable-scale-effect-by-default,kwin.upd:overview-group-plugin-id,kwin.upd:animation-speed-cleanup
+update_info=kwin.upd:replace-scalein-with-scale,kwin.upd:port-minimizeanimation-effect-to-js,kwin.upd:port-scale-effect-to-js,kwin.upd:port-dimscreen-effect-to-js,kwin.upd:auto-bordersize,kwin.upd:animation-speed,kwin.upd:desktop-grid-click-behavior,kwin.upd:no-swap-encourage,kwin.upd:make-translucency-effect-disabled-by-default,kwin.upd:remove-flip-switch-effect,kwin.upd:remove-cover-switch-effect,kwin.upd:remove-cubeslide-effect,kwin.upd:remove-xrender-backend,kwin.upd:enable-scale-effect-by-default,kwin.upd:overview-group-plugin-id,kwin.upd:animation-speed-cleanup,kwin.upd:replace-cascaded-zerocornered
 
 [Desktops]
 Id_1=4d099f6e-0098-45b4-b171-ae3516e62007
@@ -15,7 +15,31 @@ OutScale=0.05
 
 [Plugins]
 blurEnabled=true
+kzonesEnabled=true
 slideEnabled=false
+
+[Script-kzones]
+invertedMode=true
+layoutsJson=[\n                    {\n                        "name": "Layout 1",\n                        "padding": 0,\n                        "zones": [\n                            {\n                                "name": "1",\n                                "x": 0,\n                                "y": 0,\n                                "height": 100,\n                                "width": 75\n                            },\n                            {\n                                "name": "2",\n                                "x": 75,\n                                "y": 0,\n                                "height": 100,\n                                "width": 25\n                            }\n                        ]\n                    }\n                ]
+modifierEnabled=true
+
+[Tiling]
+padding=4
+
+[Tiling][1a8b96cb-c7be-588f-b063-65f3c0d2e754]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
+[Tiling][29e5d82c-1d87-52aa-8446-00e4bb2ada82]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.15},{"width":0.5999999999999999},{"width":0.25}]}
+
+[Tiling][5ddd4229-7003-5a1a-9ce7-190bfbeb2559]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
+[Tiling][6ebd0d1d-4d49-59b1-81d5-77e97e3ef4a6]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
+[Tiling][c5e3f35b-3a9b-5d3b-a291-402d38bdce10]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
 [Xwayland]
 Scale=1
