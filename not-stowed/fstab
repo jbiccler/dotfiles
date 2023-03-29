@@ -12,7 +12,7 @@ tmpfs                                     /tmp           tmpfs   defaults,noatim
 # /dev/sda4
 PARTUUID=643da90e-3cda-40fc-8fb7-a5ab0307e64f   /mnt/MainSSD ntfs-3g defaults 0 0
 # /dev/sdb1
-PARTUUID=78538dac-7ab6-4b3d-b910-ccb5efc8d27b   /mnt/MainHDD ntfs-3g defaults 0 0
+# PARTUUID=78538dac-7ab6-4b3d-b910-ccb5efc8d27b   /mnt/MainHDD ntfs-3g defaults 0 0
 # /dev/sdc1
 # PARTUUID=02dd60c0-caee-4e5e-bd90-d03f862187eb   /mnt/SecondHDD ntfs-3g defaults 0 0
 # /dev/sdd1

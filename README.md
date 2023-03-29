@@ -2,6 +2,11 @@
 
 The dotfiles of my current GNU/Linux [EndeavorOS](https://endeavouros.com/) install managed with [GNU Stow](https://www.gnu.org/software/stow/).
 
+
+<img src="nvim.png"
+     alt="Neovim running in Tmux"
+     style="float: left; margin-right: 10px;" />
+
 ## Basic workflow:
 
 1. Each folder corresponds to a particular app. Make sure that the internal folder and file structure corresponds to the relative path as if the user would be in the parent folder of wherever dotfiles is stored (~/)
