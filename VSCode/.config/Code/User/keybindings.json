@@ -6,7 +6,7 @@
     },
     {
         "key": "ctrl+alt+n",
-        "command": "-code-runner.run"
+        "command": "code-runner.run"
     },
     // keyboard quickfix
     {
@@ -69,5 +69,59 @@
         "key": "space w",
         "when": "editorTextFocus && neovim.init && neovim.mode != insert",
         "args": "<C-W>"
+    },
+    {
+        "command": "vscode-neovim.send",
+        "key": "alt+j",
+        "when": "editorTextFocus && neovim.init",
+        "args": "<A-j>"
+    },
+    {
+        "command": "vscode-neovim.send",
+        "key": "alt+k",
+        "when": "editorTextFocus && neovim.init",
+        "args": "<A-k>"
+    },
+    {
+        "command": "vscode-neovim.send",
+        "key": "space space y",
+        "when": "editorTextFocus && neovim.init && neovim.mode != insert",
+        "args": "<space><space>y"
+    },
+    {
+        "command": "vscode-neovim.send",
+        "key": "space space shift+y",
+        "when": "editorTextFocus && neovim.init && neovim.mode != insert",
+        "args": "<space><space>Y"
+    },
+    {
+        "command": "vscode-neovim.send",
+        "key": "space space p",
+        "when": "editorTextFocus && neovim.init && neovim.mode != insert",
+        "args": "<space><space>p"
+    },
+    {
+        "command": "vscode-neovim.send",
+        "key": "space space shift+p",
+        "when": "editorTextFocus && neovim.init && neovim.mode != insert",
+        "args": "<space><space>P"
+    },
+    {
+        "command": "vscode-neovim.send",
+        "key": "space space s",
+        "when": "editorTextFocus && neovim.init && neovim.mode != insert",
+        "args": "<space><space>s"
+    },
+    {
+        "command": "vscode-neovim.send",
+        "key": "space space shift+s",
+        "when": "editorTextFocus && neovim.init && neovim.mode != insert",
+        "args": "<space><space>S"
+    },
+    {
+        "command": "vscode-neovim.send",
+        "key": "space space alt+s",
+        "when": "editorTextFocus && neovim.init && neovim.mode != insert",
+        "args": "<space><space><A-s>"
     },
 ]

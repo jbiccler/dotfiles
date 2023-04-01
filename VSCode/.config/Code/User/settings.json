@@ -1,8 +1,8 @@
 {
-    "code-runner.clearPreviousOutput": true,
     "code-runner.showExecutionMessage": false,
     "code-runner.executorMap": {
         "python": "$pythonPath -u $fullFileName",
+        "cpp": "cd $dir && g++ -o $fileNameWithoutExt *.cpp && ./$fileNameWithoutExt"
     },
     "editor.formatOnSave": true,
     "sync.gist": "dd9b1ec09ee639935675320a6265185d",
@@ -145,5 +145,8 @@
     "workbench.colorTheme": "Tokyo Night Storm",
     "vscode-neovim.neovimInitVimPaths.linux": "/home/jaron/dotfiles/nvim/.config/nvim/init.lua",
     "editor.scrollBeyondLastLine": false,
-    "vscode-neovim.useCtrlKeysForInsertMode": false
+    "vscode-neovim.useCtrlKeysForInsertMode": false,
+    "code-runner.runInTerminal": true,
+    "vscode-neovim.mouseSelectionStartVisualMode": true,
+    "code-runner.saveAllFilesBeforeRun": true
 }

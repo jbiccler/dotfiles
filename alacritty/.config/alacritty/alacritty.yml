@@ -364,19 +364,19 @@ color_schemes:
   tokyo-night-storm: &tokyo-night-storm
     # Default colors
     primary:
-      background: '#24283b'
-      foreground: '#a9b1d6'
+      background: '#1f2335'
+      foreground: '#7982a9'
 
     # Normal colors
     normal:
-      black:   '#32344a'
+      black:   '#414868'
       red:     '#f7768e'
-      green:   '#9ece6a'
+      green:   '#73daca'
       yellow:  '#e0af68'
       blue:    '#7aa2f7'
-      magenta: '#ad8ee6'
-      cyan:    '#449dab'
-      white:   '#9699a8'
+      magenta: '#bb9af7'
+      cyan:    '#7dcfff'
+      white:   '#7982a9'
 
     # Bright colors
     bright:

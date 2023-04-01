@@ -29,7 +29,9 @@ map("n", "<leader><leader>y", '"+y', { desc = "Copy to system clipboard" })
 map("n", "<leader><leader>Y", '"+Y', { desc = "Copy to system clipboard" })
 map("n", "<leader><leader>p", [["+p]], { desc = "Paste from system clipboard" })
 map("n", "<leader><leader>P", [["+P]], { desc = "Paste from system clipboard" })
+map("x", "<leader><leader>r", [["_dP]], { desc = "Replace" })
 map("n", "<leader>R", [[:silent !tmux send-keys -t 1 "\!\!" Enter <CR>]], { desc = "Execute last tmux command" })
+
 map("n", "<leader>r", [[:silent !tmux send-keys -t 1 "python " %:p Enter <CR>]], { desc = "Execute Python" })
 
 -- hop

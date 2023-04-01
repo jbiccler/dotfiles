@@ -1,28 +1,43 @@
-
 -- packer.nvim config
 -- ensure that packer is installed
 local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-    packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    packer_bootstrap = fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim',
+        install_path })
 end
 -- configure plugins
 require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
     use {
-    "phaazon/hop.nvim",
-    config = function()
-        require("hop").setup()
-        vim.api.nvim_set_keymap("n", "<leader><leader>s", ":HopChar2<cr>", { silent = true })
-        vim.api.nvim_set_keymap("n", "<leader><leader><M-s>", ":HopPattern<cr>", { silent = true })
-        vim.api.nvim_set_keymap("n", "<leader><leader>S", ":HopWord<cr>", { silent = true })
-    end,
+        "phaazon/hop.nvim",
+        branch = 'v2', -- optional but strongly recommended
+        config = function()
+            require("hop").setup()
+            vim.api.nvim_set_keymap("n", "<space><space>s", ":HopChar2<cr>", { silent = true })
+            vim.api.nvim_set_keymap("n", "<space><space><M-s>", ":HopPattern<cr>", { silent = true })
+            vim.api.nvim_set_keymap("n", "<space><space>S", ":HopWord<cr>", { silent = true })
+        end,
     }
 
     -- surround text objects
-    use { 'echasnovski/mini.surround', branch = 'stable' }
+    use { 'echasnovski/mini.surround', branch = 'stable',
+        -- config = function()
+        --     require("mini.surround").setup({
+        --         mappings = {
+        --             add = "gsa",
+        --             delete = "gsd",
+        --             find = "gsf",
+        --             find_left = "gsF",
+        --             highlight = "gsh",
+        --             replace = "gsr",
+        --             update_n_lines = "gsn",
+        --         },
+        --     })
+        -- end,
+    }
     -- comment/uncomment
-    use { 'echasnovski/mini-comment.nvim', branch = 'stable' }
+    use { 'echasnovski/mini.comment', branch = 'stable' }
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins

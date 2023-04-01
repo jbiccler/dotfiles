@@ -127,7 +127,7 @@ History Items[$e]=file:$HOME/MEGA/Afbeeldingen/Background/Peak Aesthetics,file:$
 
 [General]
 AccentColor=0,211,184
-BrowserApplication=firefox.desktop
+BrowserApplication=google-chrome.desktop
 ColorScheme=CatppuccinMacchiato
 ColorSchemeHash=367978722a8042f110ea0bd0221e8c9e02aee5fd
 LastUsedCustomAccentColor=0,211,184

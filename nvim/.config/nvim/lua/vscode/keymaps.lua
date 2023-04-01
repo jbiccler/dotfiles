@@ -85,15 +85,12 @@ map("n", "<leader>se", "<C-w>=", { desc = "Splits equal width" })
 map("n", "<leader>sx", ":close<CR>", { desc = "Close split" })
 
 
--- remap first and last non-blank
-map("n", "<M-h>", "^", { desc = "First non-blank" })
-map("n", "<M-l>", "g_", { desc = "Last non-blank" })
-
 map("n", "<C-z>", ":u<cr>", { desc = "Undo" })
 map("n", "<leader><leader>y", '"+y', { desc = "Copy to system clipboard" })
 map("n", "<leader><leader>Y", '"+Y', { desc = "Copy to system clipboard" })
 map("n", "<leader><leader>p", [["+p]], { desc = "Paste from system clipboard" })
 map("n", "<leader><leader>P", [["+P]], { desc = "Paste from system clipboard" })
+map("v", "<leader><leader>r", [["_dP]], { desc = "Replace" })
 
 -- move lines
 map("n", "<M-j>", ":m .+1<CR>==", { desc = "Move line down" })
