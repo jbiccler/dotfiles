@@ -1,5 +1,5 @@
 [$Version]
-update_info=kwin.upd:replace-scalein-with-scale,kwin.upd:port-minimizeanimation-effect-to-js,kwin.upd:port-scale-effect-to-js,kwin.upd:port-dimscreen-effect-to-js,kwin.upd:auto-bordersize,kwin.upd:animation-speed,kwin.upd:desktop-grid-click-behavior,kwin.upd:no-swap-encourage,kwin.upd:make-translucency-effect-disabled-by-default,kwin.upd:remove-flip-switch-effect,kwin.upd:remove-cover-switch-effect,kwin.upd:remove-cubeslide-effect,kwin.upd:remove-xrender-backend,kwin.upd:enable-scale-effect-by-default,kwin.upd:overview-group-plugin-id,kwin.upd:animation-speed-cleanup,kwin.upd:replace-cascaded-zerocornered
+update_info=kwin.upd:replace-scalein-with-scale,kwin.upd:port-minimizeanimation-effect-to-js,kwin.upd:port-scale-effect-to-js,kwin.upd:port-dimscreen-effect-to-js,kwin.upd:auto-bordersize,kwin.upd:animation-speed,kwin.upd:desktop-grid-click-behavior,kwin.upd:no-swap-encourage,kwin.upd:make-translucency-effect-disabled-by-default,kwin.upd:remove-flip-switch-effect,kwin.upd:remove-cover-switch-effect,kwin.upd:remove-cubeslide-effect,kwin.upd:remove-xrender-backend,kwin.upd:enable-scale-effect-by-default,kwin.upd:overview-group-plugin-id,kwin.upd:animation-speed-cleanup,kwin.upd:replace-cascaded-zerocornered,bismuth_new_logger.upd:bismuth-new-logger
 
 [Desktops]
 Id_1=4d099f6e-0098-45b4-b171-ae3516e62007
@@ -14,8 +14,9 @@ InScale=0.05
 OutScale=0.05
 
 [Plugins]
+autotileEnabled=false
 blurEnabled=true
-kzonesEnabled=true
+kzonesEnabled=false
 slideEnabled=false
 
 [Script-kzones]
@@ -30,13 +31,13 @@ padding=4
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
 [Tiling][1c922f31-5ac1-5587-a5cb-c97e6ef1ad42]
-tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.7692708333333325},{"width":0.23072916666666754}]}
 
 [Tiling][29e5d82c-1d87-52aa-8446-00e4bb2ada82]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.15},{"width":0.5999999999999999},{"width":0.25}]}
 
 [Tiling][4f4c65aa-3424-5c98-be14-d89ab0edcf8a]
-tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.6229166666666667},{"layoutDirection":"vertical","tiles":[{"height":0.4814814814814815},{"height":0.5185185185185185}],"width":0.3770833333333333}]}
 
 [Tiling][5ddd4229-7003-5a1a-9ce7-190bfbeb2559]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
@@ -45,11 +46,7 @@ tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"wi
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
 [Tiling][c5e3f35b-3a9b-5d3b-a291-402d38bdce10]
-tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.47375},{"width":0.52625}]}
 
 [Xwayland]
 Scale=1
-
-[org.kde.kdecoration2]
-library=org.kde.breeze
-theme=Breeze

@@ -65,6 +65,20 @@ ForegroundNormal=#cad3f5
 ForegroundPositive=#a6da95
 ForegroundVisited=#c6a0f6
 
+[Colors:Header][Inactive]
+BackgroundAlternate[$d]
+BackgroundNormal[$d]
+DecorationFocus[$d]
+DecorationHover[$d]
+ForegroundActive[$d]
+ForegroundInactive[$d]
+ForegroundLink[$d]
+ForegroundNegative[$d]
+ForegroundNeutral[$d]
+ForegroundNormal[$d]
+ForegroundPositive[$d]
+ForegroundVisited[$d]
+
 [Colors:Selection]
 BackgroundAlternate=10,159,146
 BackgroundNormal=10,159,146
@@ -134,8 +148,11 @@ LastUsedCustomAccentColor=0,211,184
 TerminalApplication=alacritty
 TerminalService=Alacritty.desktop
 
+[Icons]
+Theme=breeze-dark
+
 [KDE]
-LookAndFeelPackage=Catppuccin-Macchiato
+LookAndFeelPackage=org.kde.breezedark.desktop
 SingleClick=false
 
 [KFileDialog Settings]
