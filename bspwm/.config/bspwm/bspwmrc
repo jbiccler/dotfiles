@@ -5,9 +5,9 @@
 # sh ~/.config/bspwm/monitor.sh &
 autorandr --load desktop
 
-bspc monitor HDMI-0 -d 3 4
-bspc monitor DVI-D-0 -d 1 2
-bspc monitor HDMI2 -d 5 6
+bspc monitor DVI-D-0 -d 1 2 3 4
+bspc monitor HDMI-0 -d 1 2 3 4
+bspc monitor HDMI2 -d 1 2 3 4
 
 # Notifications
 /usr/bin/dunst &
