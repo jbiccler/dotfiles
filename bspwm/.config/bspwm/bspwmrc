@@ -36,16 +36,12 @@ bspc config gapless_monocle true
 
 bspc config window_gap $gap
 
-#bspc config left_padding $gap
-#bspc config right_padding $gap
-#bspc config bottom_padding 26+$gap
-
 bspc config -m DVI-D-0 top_padding $gap
 bspc config -m HDMI-0 top_padding $gap
 bspc config -m HDMI2 top_padding $gap
 
 bspc config -m DVI-D-0 bottom_padding $gap
-bspc config -m HDMI-0 bottom_padding 26+$gap
+bspc config -m HDMI-0 bottom_padding $gap
 bspc config -m HDMI2 bottom_padding $gap
 
 bspc config -m DVI-D-0 left_padding $gap
