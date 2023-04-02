@@ -3,7 +3,7 @@
 #### AUTOSTART ####
 # Set display from arandr saved script
 # sh ~/.config/bspwm/monitor.sh &
-autorandr --c &
+autorandr --load desktop
 
 bspc monitor HDMI-0 -d 3 4
 bspc monitor DVI-D-0 -d 1 2
