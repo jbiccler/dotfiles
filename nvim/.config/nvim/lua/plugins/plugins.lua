@@ -2,7 +2,6 @@ if true then
 	return {
 		{
 			"nvim-telescope/telescope.nvim",
-			enabled = not vim.g.vscode,
 			keys = {
 				-- disable the keymap to grep files
 				{ "<leader><space>", false },
@@ -157,7 +156,6 @@ if true then
 		},
 		{
 			"aserowy/tmux.nvim",
-			enabled = not vim.g.vscode,
 			config = function()
 				return require("tmux").setup()
 			end,
@@ -209,18 +207,16 @@ if true then
 		},
 		{
 			"phaazon/hop.nvim",
-			enabled = not vim.g.vscode,
 			event = "BufRead",
 			config = function()
 				require("hop").setup()
-				vim.api.nvim_set_keymap("n", "s", ":HopChar2<cr>", { silent = true })
-				vim.api.nvim_set_keymap("n", "<M-s>", ":HopPattern<cr>", { silent = true })
-				vim.api.nvim_set_keymap("n", "S", ":HopWord<cr>", { silent = true })
+				vim.api.nvim_set_keymap("n", "<leader><leader>s", ":HopChar2<cr>", { silent = true })
+				vim.api.nvim_set_keymap("n", "<leader><leader><M-s>", ":HopPattern<cr>", { silent = true })
+				vim.api.nvim_set_keymap("n", "<leader><leader>S", ":HopWord<cr>", { silent = true })
 			end,
 		},
 		{
 			"rmagatti/auto-session",
-			enabled = not vim.g.vscode,
 			opts = {
 				log_level = "error",
 				auto_session_supress_dirs = { "~/", "~/Downloads" },
@@ -249,6 +245,15 @@ if true then
 		},
 		{
 			"nvim-treesitter/nvim-treesitter-context",
+		},
+		{
+			"nvim-neo-tree/neo-tree.nvim",
+			opts = {
+				window = {
+					position = "left",
+					width = 30,
+				},
+			},
 		},
 	}
 end
