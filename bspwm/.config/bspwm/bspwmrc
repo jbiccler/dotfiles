@@ -13,7 +13,7 @@ bspc monitor HDMI2 -d 1 2 3 4
 /usr/bin/dunst &
 nm-applet --indicator &
 
-#picom  --experimental-backends --config $HOME/.config/picom.conf &
+picom --config $HOME/.config/picom.conf &
 feh --randomize --bg-fill "/mnt/SecondSSD/Users/Jaron/MEGA/Afbeeldingen/Background/Peak Aesthetics/"* &
 # Polkit
 /usr/lib/polkit-kde-authentication-agent-1 &

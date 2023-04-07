@@ -13,7 +13,7 @@ _launch=none,none,Alacritty
 [KDE Keyboard Layout Switcher]
 Switch keyboard layout to English (US, euro on 5)=none,none,Switch keyboard layout to English (US\\, euro on 5)
 Switch keyboard layout to English (US, intl., with dead keys)=none,none,Switch keyboard layout to English (US\\, intl.\\, with dead keys)
-Switch to Next Keyboard Layout=Meta+Alt+K,Meta+Alt+K,Switch to Next Keyboard Layout
+Switch to Next Keyboard Layout=none,Meta+Alt+K,Switch to Next Keyboard Layout
 _k_friendly_name=Keyboard Layout Switcher
 
 [kaccess]
@@ -54,14 +54,14 @@ _k_friendly_name=Session Management
 
 [kwin]
 Activate Window Demanding Attention=Meta+Ctrl+A,Meta+Ctrl+A,Activate Window Demanding Attention
-AutotileFocusAbove=,none,Autotile: Focus Above
-AutotileFocusBelow=,none,Autotile: Focus Below
-AutotileFocusLeft=,none,Autotile: Focus Left
-AutotileFocusRight=,none,Autotile: Focus Right
-AutotileInsertAbove=,none,Autotile: Insert Above
-AutotileInsertBelow=,none,Autotile: Insert Below
-AutotileInsertLeft=,none,Autotile: Insert Left
-AutotileInsertRight=,none,Autotile: Insert Right
+AutotileFocusAbove=none,none,Autotile: Focus Above
+AutotileFocusBelow=none,none,Autotile: Focus Below
+AutotileFocusLeft=none,none,Autotile: Focus Left
+AutotileFocusRight=none,none,Autotile: Focus Right
+AutotileInsertAbove=none,none,Autotile: Insert Above
+AutotileInsertBelow=none,none,Autotile: Insert Below
+AutotileInsertLeft=none,none,Autotile: Insert Left
+AutotileInsertRight=none,none,Autotile: Insert Right
 AutotileRetileWindow=Meta+Shift+Space,none,Autotile: Untile/Retile Window
 AutotileSwapAbove=Meta+Ctrl+K,none,Autotile: Swap Above
 AutotileSwapBelow=Meta+Ctrl+J,none,Autotile: Swap Below

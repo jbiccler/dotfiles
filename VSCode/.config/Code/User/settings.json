@@ -148,5 +148,6 @@
     "vscode-neovim.useCtrlKeysForInsertMode": false,
     "code-runner.runInTerminal": true,
     "vscode-neovim.mouseSelectionStartVisualMode": true,
-    "code-runner.saveAllFilesBeforeRun": true
+    "code-runner.saveAllFilesBeforeRun": true,
+    "cmake.configureOnOpen": true
 }
