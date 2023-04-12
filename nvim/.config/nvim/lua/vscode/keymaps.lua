@@ -2,18 +2,24 @@
 -- vim.opt.clipboard:append("unnamedplus")
 
 local function map(mode, lhs, rhs, opts)
-    opts = opts or {}
-    opts.silent = opts.silent ~= false
-    vim.keymap.set(mode, lhs, rhs, opts)
+	opts = opts or {}
+	opts.silent = opts.silent ~= false
+	vim.keymap.set(mode, lhs, rhs, opts)
 end
 
 -- LazyVim keymaps
 
--- This file is automatically loaded by lazyvim.plugins.config
-
 -- better up/down
-map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-map("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+map(
+	"n",
+	"k",
+	"<Cmd>call VSCodeNotify('cursorMove', { 'to': 'up', 'by': 'wrappedLine', 'value': v:count ? v:count : 1 })<CR>"
+)
+map(
+	"n",
+	"j",
+	"<Cmd>call VSCodeNotify('cursorMove', { 'to': 'down', 'by': 'wrappedLine', 'value': v:count ? v:count : 1 })<CR>"
+)
 
 -- Move to window using the <ctrl> hjkl keys
 map("n", "<C-h>", "", { desc = "Go to left window" })
@@ -46,7 +52,6 @@ map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 
 -- Clear search with <esc>
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
-
 
 map({ "n", "x" }, "gw", "*N", { desc = "Search word under cursor" })
 
@@ -83,7 +88,6 @@ map("n", "<leader>ss", "<C-w>s", { desc = "Split horizontal" })
 map("n", "<leader>ss", "<C-w>s", { desc = "Split horizontal" })
 map("n", "<leader>se", "<C-w>=", { desc = "Splits equal width" })
 map("n", "<leader>sx", ":close<CR>", { desc = "Close split" })
-
 
 map("n", "<C-z>", ":u<cr>", { desc = "Undo" })
 map("n", "<leader><leader>y", '"+y', { desc = "Copy to system clipboard" })
