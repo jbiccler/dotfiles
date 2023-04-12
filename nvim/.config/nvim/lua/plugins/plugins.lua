@@ -213,6 +213,20 @@ if true then
 				vim.api.nvim_set_keymap("n", "<leader><leader>s", ":HopChar2<cr>", { silent = true })
 				vim.api.nvim_set_keymap("n", "<leader><leader><M-s>", ":HopPattern<cr>", { silent = true })
 				vim.api.nvim_set_keymap("n", "<leader><leader>S", ":HopWord<cr>", { silent = true })
+				vim.api.nvim_set_keymap("n", "f", ":HopChar1AC<cr>", { silent = true })
+				vim.api.nvim_set_keymap("n", "F", ":HopChar1BC<cr>", { silent = true })
+				vim.api.nvim_set_keymap(
+					"n",
+					"t",
+					":lua require'hop'.hint_char1({direction = require'hop.hint'.HintDirection.AFTER_CURSOR,hint_offset = -1})<cr>",
+					{ silent = true }
+				)
+				vim.api.nvim_set_keymap(
+					"n",
+					"T",
+					":lua require('hop').hint_char1({direction = require('hop.hint').HintDirection.BEFORE_CURSOR,hint_offset = 1})<cr>",
+					{ silent = true }
+				)
 			end,
 		},
 		{

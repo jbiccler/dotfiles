@@ -7,6 +7,29 @@ local function map(mode, lhs, rhs, opts)
 	vim.keymap.set(mode, lhs, rhs, opts)
 end
 
+local function notify(cmd)
+	return string.format("<cmd>call VSCodeNotify('%s')<CR>", cmd)
+end
+
+local function v_notify(cmd)
+	return string.format("<cmd>call VSCodeNotifyVisual('%s', 1)<CR>", cmd)
+end
+
+map("n", "<Leader>xr", notify("references-view.findReferences"), { silent = true }) -- language references
+map("n", "<Leader>xd", notify("workbench.actions.view.problems"), { silent = true }) -- language diagnostics
+map("n", "gr", notify("editor.action.goToReferences"), { silent = true })
+-- map("n", "<Leader>rn", notify("editor.action.rename"), { silent = true })
+map("n", "<Leader>fm", notify("editor.action.formatDocument"), { silent = true })
+map("n", "<Leader>ca", notify("editor.action.refactor"), { silent = true }) -- language code actions
+
+map("n", "<Leader>sg", notify("workbench.action.findInFiles"), { silent = true }) -- use ripgrep to search files
+-- map("n", "<Leader>ts", notify("workbench.action.toggleSidebarVisibility"), { silent = true })
+-- map("n", "<Leader>th", notify("workbench.action.toggleAuxiliaryBar"), { silent = true }) -- toggle docview (help page)
+-- map("n", "<Leader>tp", notify("workbench.action.togglePanel"), { silent = true })
+map("n", "<Leader>fc", notify("workbench.action.showCommands"), { silent = true }) -- find commands
+map("n", "<Leader>ff", notify("workbench.action.quickOpen"), { silent = true }) -- find files
+map("n", "<Leader>tw", notify("workbench.action.terminal.toggleTerminal"), { silent = true }) -- terminal window
+
 -- LazyVim keymaps
 
 -- better up/down

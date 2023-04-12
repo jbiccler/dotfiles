@@ -1,127 +1,139 @@
 // Place your key bindings in this file to override the defaultsauto[]
 [
-    {
-        "key": "shift+enter",
-        "command": "code-runner.run"
-    },
-    {
-        "key": "ctrl+alt+n",
-        "command": "code-runner.run"
-    },
-    // keyboard quickfix
-    {
-        "key": "ctrl+.",
-        "command": "keyboard-quickfix.openQuickFix",
-        "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
-    },
-    // use ':' key for commands even if no editor tab is opened
-    {
-        "key": "Shift+.",
-        "command": "vscode-neovim.send",
-        "when": "!inputFocus && !editorTextFocus",
-        "args": ":"
-    },
-    // window navigation
-    {
-        "key": "ctrl+h",
-        "when": "neovim.mode != insert",
-        "command": "workbench.action.navigateLeft"
-    },
-    {
-        "key": "ctrl+l",
-        "when": "neovim.mode != insert",
-        "command": "workbench.action.navigateRight"
-    },
-    {
-        "key": "ctrl+k",
-        "when": "neovim.mode != insert",
-        "command": "workbench.action.navigateUp"
-    },
-    {
-        "key": "ctrl+j",
-        "when": "neovim.mode != insert",
-        "command": "workbench.action.navigateDown"
-    },
-    // Tabs
-    {
-        "key": "shift+h",
-        "when": "neovim.mode != insert",
-        "command": "workbench.action.previousEditor"
-    },
-    {
-        "key": "shift+l",
-        "when": "neovim.mode != insert",
-        "command": "workbench.action.nextEditor"
-    },
-    // Neovim plugin
-    {
-        "key": "ctrl+e",
-        "when": "editorTextFocus && neovim.init && neovim.mode != insert",
-        "command": "workbench.action.toggleSidebarVisibility",
-    },
-    {
-        "key": "ctrl+b",
-        "when": "editorTextFocus && neovim.init && neovim.mode != insert",
-        "command": "workbench.action.toggleSidebarVisibility",
-    },
-    {
-        "command": "vscode-neovim.send",
-        "key": "space w",
-        "when": "editorTextFocus && neovim.init && neovim.mode != insert",
-        "args": "<C-W>"
-    },
-    {
-        "command": "vscode-neovim.send",
-        "key": "alt+j",
-        "when": "editorTextFocus && neovim.init",
-        "args": "<A-j>"
-    },
-    {
-        "command": "vscode-neovim.send",
-        "key": "alt+k",
-        "when": "editorTextFocus && neovim.init",
-        "args": "<A-k>"
-    },
-    {
-        "command": "vscode-neovim.send",
-        "key": "space space y",
-        "when": "editorTextFocus && neovim.init && neovim.mode != insert",
-        "args": "<space><space>y"
-    },
-    {
-        "command": "vscode-neovim.send",
-        "key": "space space shift+y",
-        "when": "editorTextFocus && neovim.init && neovim.mode != insert",
-        "args": "<space><space>Y"
-    },
-    {
-        "command": "vscode-neovim.send",
-        "key": "space space p",
-        "when": "editorTextFocus && neovim.init && neovim.mode != insert",
-        "args": "<space><space>p"
-    },
-    {
-        "command": "vscode-neovim.send",
-        "key": "space space shift+p",
-        "when": "editorTextFocus && neovim.init && neovim.mode != insert",
-        "args": "<space><space>P"
-    },
-    {
-        "command": "vscode-neovim.send",
-        "key": "space space s",
-        "when": "editorTextFocus && neovim.init && neovim.mode != insert",
-        "args": "<space><space>s"
-    },
-    {
-        "command": "vscode-neovim.send",
-        "key": "space space shift+s",
-        "when": "editorTextFocus && neovim.init && neovim.mode != insert",
-        "args": "<space><space>S"
-    },
-    {
-        "command": "vscode-neovim.send",
-        "key": "space space alt+s",
-        "when": "editorTextFocus && neovim.init && neovim.mode != insert",
-        "args": "<space><space><A-s>"
-    },
+  {
+    "key": "shift+enter",
+    "command": "code-runner.run"
+  },
+  {
+    "key": "ctrl+alt+n",
+    "command": "code-runner.run"
+  },
+  // keyboard quickfix
+  {
+    "key": "ctrl+.",
+    "command": "keyboard-quickfix.openQuickFix",
+    "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
+  },
+  // use ':' key for commands even if no editor tab is opened
+  {
+    "key": "Shift+.",
+    "command": "vscode-neovim.send",
+    "when": "!inputFocus && !editorTextFocus",
+    "args": ":"
+  },
+  // window navigation
+  {
+    "key": "ctrl+h",
+    "when": "neovim.mode != insert",
+    "command": "workbench.action.navigateLeft"
+  },
+  {
+    "key": "ctrl+l",
+    "when": "neovim.mode != insert",
+    "command": "workbench.action.navigateRight"
+  },
+  {
+    "key": "ctrl+k",
+    "when": "neovim.mode != insert",
+    "command": "workbench.action.navigateUp"
+  },
+  {
+    "key": "ctrl+j",
+    "when": "neovim.mode != insert",
+    "command": "workbench.action.navigateDown"
+  },
+  // Tabs
+  {
+    "key": "shift+h",
+    "when": "neovim.mode != insert",
+    "command": "workbench.action.previousEditor"
+  },
+  {
+    "key": "shift+l",
+    "when": "neovim.mode != insert",
+    "command": "workbench.action.nextEditor"
+  },
+  // Neovim plugin
+  {
+    "key": "ctrl+e",
+    "when": "editorTextFocus && neovim.init && neovim.mode != insert",
+    "command": "workbench.action.toggleSidebarVisibility",
+  },
+  {
+    "key": "ctrl+b",
+    "when": "editorTextFocus && neovim.init && neovim.mode != insert",
+    "command": "workbench.action.toggleSidebarVisibility",
+  },
+  {
+    "command": "vscode-neovim.send",
+    "key": "space w",
+    "when": "editorTextFocus && neovim.init && neovim.mode != insert",
+    "args": "<C-W>"
+  },
+  {
+    "command": "vscode-neovim.send",
+    "key": "alt+j",
+    "when": "editorTextFocus && neovim.init",
+    "args": "<A-j>"
+  },
+  {
+    "command": "vscode-neovim.send",
+    "key": "alt+k",
+    "when": "editorTextFocus && neovim.init",
+    "args": "<A-k>"
+  },
+  {
+    "command": "vscode-neovim.send",
+    "key": "space space y",
+    "when": "editorTextFocus && neovim.init && neovim.mode != insert",
+    "args": "<space><space>y"
+  },
+  {
+    "command": "vscode-neovim.send",
+    "key": "space space shift+y",
+    "when": "editorTextFocus && neovim.init && neovim.mode != insert",
+    "args": "<space><space>Y"
+  },
+  {
+    "command": "vscode-neovim.send",
+    "key": "space space p",
+    "when": "editorTextFocus && neovim.init && neovim.mode != insert",
+    "args": "<space><space>p"
+  },
+  {
+    "command": "vscode-neovim.send",
+    "key": "space space shift+p",
+    "when": "editorTextFocus && neovim.init && neovim.mode != insert",
+    "args": "<space><space>P"
+  },
+  {
+    "command": "vscode-neovim.send",
+    "key": "space space s",
+    "when": "editorTextFocus && neovim.init && neovim.mode != insert",
+    "args": "<space><space>s"
+  },
+  {
+    "command": "vscode-neovim.send",
+    "key": "space space shift+s",
+    "when": "editorTextFocus && neovim.init && neovim.mode != insert",
+    "args": "<space><space>S"
+  },
+  {
+    "command": "vscode-neovim.send",
+    "key": "space space alt+s",
+    "when": "editorTextFocus && neovim.init && neovim.mode != insert",
+    "args": "<space><space><A-s>"
+  },
+  {
+    "command": "vscode-neovim.send",
+    "key": "f",
+    "when": "editorTextFocus && neovim.init && neovim.mode != insert",
+    "args": "f"
+  },
+  {
+    "command": "vscode-neovim.send",
+    "key": "t",
+    "when": "editorTextFocus && neovim.init && neovim.mode != insert",
+    "args": "t"
+  },
 ]
