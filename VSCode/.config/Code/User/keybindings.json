@@ -1,7 +1,7 @@
 // Place your key bindings in this file to override the defaultsauto[]
 [
   {
-    "key": "shift+enter",
+    "key": "space shift+r",
     "command": "code-runner.run"
   },
   {
@@ -135,5 +135,40 @@
     "key": "t",
     "when": "editorTextFocus && neovim.init && neovim.mode != insert",
     "args": "t"
+  },
+  {
+    "key": "ctrl+f",
+    "command": "-workbench.action.terminal.focusFind",
+    "when": "terminalFindFocused && terminalHasBeenCreated || terminalFindFocused && terminalProcessSupported || terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+  },
+  {
+    "key": "space x r",
+    "command": "references-view.findReferences",
+    "when": "editorTextFocus && neovim.init && neovim.mode != insert"
+  },
+  {
+    "key": "space x d",
+    "command": "workbench.action.view.problems",
+    "when": "editorTextFocus && neovim.init && neovim.mode != insert"
+  },
+  {
+    "key": "space f m",
+    "command": "editor.action.formatDocument",
+    "when": "editorTextFocus && neovim.init && neovim.mode != insert"
+  },
+  {
+    "key": "space c a",
+    "command": "editor.action.refactor",
+    "when": "editorTextFocus && neovim.init && neovim.mode != insert"
+  },
+  {
+    "key": "space s g",
+    "command": "workbench.action.findInFiles",
+    "when": "editorTextFocus && neovim.init && neovim.mode != insert"
+  },
+  {
+    "key": "space f f",
+    "command": "workbench.action.quickOpen",
+    "when": "editorTextFocus && neovim.init && neovim.mode != insert"
   },
 ]

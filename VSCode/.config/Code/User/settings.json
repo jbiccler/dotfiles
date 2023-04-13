@@ -149,5 +149,7 @@
     "code-runner.runInTerminal": true,
     "vscode-neovim.mouseSelectionStartVisualMode": true,
     "code-runner.saveAllFilesBeforeRun": true,
-    "cmake.configureOnOpen": true
+    "cmake.configureOnOpen": true,
+    "explorer.confirmDragAndDrop": false,
+    "editor.quickSuggestionsDelay": 0
 }
