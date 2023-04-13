@@ -24,6 +24,9 @@ invertedMode=true
 layoutsJson=[\n                    {\n                        "name": "Layout 1",\n                        "padding": 0,\n                        "zones": [\n                            {\n                                "name": "1",\n                                "x": 0,\n                                "y": 0,\n                                "height": 100,\n                                "width": 75\n                            },\n                            {\n                                "name": "2",\n                                "x": 75,\n                                "y": 0,\n                                "height": 100,\n                                "width": 25\n                            }\n                        ]\n                    }\n                ]
 modifierEnabled=true
 
+[TabBox]
+MultiScreenMode=1
+
 [Tiling]
 padding=4
 
