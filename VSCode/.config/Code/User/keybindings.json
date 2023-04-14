@@ -2,7 +2,8 @@
 [
   {
     "key": "space shift+r",
-    "command": "code-runner.run"
+    "command": "code-runner.run",
+    "when": "editorTextFocus && neovim.init && neovim.mode != insert"
   },
   {
     "key": "ctrl+alt+n",
