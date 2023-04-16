@@ -2,7 +2,7 @@
     "code-runner.showExecutionMessage": false,
     "code-runner.executorMap": {
         "python": "$pythonPath -u $fullFileName",
-        "cpp": "cd $dir && g++ -o $fileNameWithoutExt *.cpp && ./$fileNameWithoutExt"
+        "cpp": "cd $dir && g++ -std=c++20 -o $fileNameWithoutExt *.cpp && ./$fileNameWithoutExt"
     },
     "editor.formatOnSave": true,
     "sync.gist": "dd9b1ec09ee639935675320a6265185d",
@@ -151,5 +151,11 @@
     "code-runner.saveAllFilesBeforeRun": true,
     "cmake.configureOnOpen": true,
     "explorer.confirmDragAndDrop": false,
-    "editor.quickSuggestionsDelay": 0
+    "editor.quickSuggestionsDelay": 0,
+    "C_Cpp.default.cppStandard": "c++20",
+    "C_Cpp.codeAnalysis.clangTidy.enabled": true,
+    "C_Cpp.formatting": "clangFormat",
+    "debug.onTaskErrors": "showErrors",
+    "explorer.confirmDelete": false,
+    "editor.fontFamily": "'JetBrains Mono','Droid Sans Mono', 'monospace', monospace"
 }
