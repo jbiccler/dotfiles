@@ -3,3 +3,6 @@
 	name = jbiccler
 [credential]
 	helper = store
+[safe]
+	directory = /mnt/MainHDD/Users/Jaron/Documents/MEGA/Documenten/Coding/Learn/rust/rustlings
+	directory = /mnt/MainHDD/Users/Jaron/Documents/MEGA/Documenten/Coding/Learn/rust/rustlings/exercises
