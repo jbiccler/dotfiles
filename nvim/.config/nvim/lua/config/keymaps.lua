@@ -2,20 +2,20 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 local function map(mode, lhs, rhs, opts)
-  local keys = require("lazy.core.handler").handlers.keys
-  ---@cast keys LazyKeysHandler
-  -- do not create the keymap if a lazy keys handler exists
-  if not keys.active[keys.parse({ lhs, mode = mode }).id] then
-    opts = opts or {}
-    opts.silent = opts.silent ~= false
-    vim.keymap.set(mode, lhs, rhs, opts)
-  end
+	local keys = require("lazy.core.handler").handlers.keys
+	---@cast keys LazyKeysHandler
+	-- do not create the keymap if a lazy keys handler exists
+	if not keys.active[keys.parse({ lhs, mode = mode }).id] then
+		opts = opts or {}
+		opts.silent = opts.silent ~= false
+		vim.keymap.set(mode, lhs, rhs, opts)
+	end
 end
 
 -- Save, undo
 map("n", "<C-s>", ":w!<cr>", { desc = "Save" })
 map("i", "<C-s>", "<ESC>:w!<cr>l", { desc = "Save file" })
--- map("n", "<C-z>", ":u<cr>", { desc = "Undo" })
+map("n", "<C-z>", ":u<cr>", { desc = "Undo" })
 
 -- Splits
 -- map("n", "<leader>sv", "<C-w>v", { desc = "Split vertical" })
@@ -23,12 +23,13 @@ map("i", "<C-s>", "<ESC>:w!<cr>l", { desc = "Save file" })
 -- map("n", "<leader>ss", "<C-w>s", { desc = "Split horizontal" })
 -- map("n", "<leader>se", "<C-w>=", { desc = "Splits equal width" })
 -- map("n", "<leader>sx", ":close<CR>", { desc = "Close split" })
-
 -- remap first and last non-blank
-map("n", "<M-h>", "^", { desc = "First non-blank" })
-map("n", "<M-l>", "g_", { desc = "Last non-blank" })
-map("v", "<M-h>", "^", { desc = "First non-blank" })
-map("v", "<M-l>", "g_", { desc = "Last non-blank" })
+-- map("n", "<M-h>", "^", { desc = "First non-blank" })
+-- map("n", "<M-l>", "g_", { desc = "Last non-blank" })
+map("n", "0", "^", { desc = "First non-blank" })
+map("n", "$", "g_", { desc = "Last non-blank" })
+map("v", "0", "^", { desc = "First non-blank" })
+map("v", "$", "g_", { desc = "Last non-blank" })
 
 -- Copy paste
 map("n", "<leader><leader>y", '"+y', { desc = "Copy to system clipboard" })
