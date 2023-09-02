@@ -119,7 +119,118 @@ if true then
 					-- pyright will be automatically installed with mason and loaded with lspconfig
 					pyright = {},
 					lua_ls = {},
-					clangd = {},
+					rust_analyzer = {
+						keys = {
+							{ "K", "<cmd>RustHoverActions<cr>", desc = "Hover Actions (Rust)" },
+							{ "<leader>cR", "<cmd>RustCodeAction<cr>", desc = "Code Action (Rust)" },
+							{ "<leader>dr", "<cmd>RustDebuggables<cr>", desc = "Run Debuggables (Rust)" },
+						},
+						settings = {
+							["rust-analyzer"] = {
+								cargo = {
+									allFeatures = true,
+									loadOutDirsFromCheck = true,
+									runBuildScripts = true,
+								},
+								-- Add clippy lints for Rust.
+								checkOnSave = {
+									allFeatures = true,
+									command = "clippy",
+									extraArgs = { "--no-deps" },
+								},
+								procMacro = {
+									enable = true,
+									ignored = {
+										["async-trait"] = { "async_trait" },
+										["napi-derive"] = { "napi" },
+										["async-recursion"] = { "async_recursion" },
+									},
+								},
+							},
+						},
+					},
+					taplo = {
+						keys = {
+							{
+								"K",
+								function()
+									if vim.fn.expand("%:t") == "Cargo.toml" and require("crates").popup_available() then
+										require("crates").show_popup()
+									else
+										vim.lsp.buf.hover()
+									end
+								end,
+								desc = "Show Crate Documentation",
+							},
+						},
+					},
+					neocmake = {},
+					clangd = {
+						keys = {
+							{
+								"<leader>cR",
+								"<cmd>ClangdSwitchSourceHeader<cr>",
+								desc = "Switch Source/Header (C/C++)",
+							},
+						},
+						root_dir = function(fname)
+							return require("lspconfig.util").root_pattern(
+								"Makefile",
+								"configure.ac",
+								"configure.in",
+								"config.h.in",
+								"meson.build",
+								"meson_options.txt",
+								"build.ninja"
+							)(fname) or require("lspconfig.util").root_pattern(
+								"compile_commands.json",
+								"compile_flags.txt"
+							)(fname) or require("lspconfig.util").find_git_ancestor(fname)
+						end,
+						capabilities = {
+							offsetEncoding = { "utf-16" },
+						},
+						cmd = {
+							"clangd",
+							"--background-index",
+							"--clang-tidy",
+							"--header-insertion=iwyu",
+							"--completion-style=detailed",
+							"--function-arg-placeholders",
+							"--fallback-style=llvm",
+						},
+						init_options = {
+							usePlaceholders = true,
+							completeUnimported = true,
+							clangdFileStatus = true,
+						},
+					},
+					tailwindcss = {
+						filetypes_exclude = { "markdown" },
+					},
+				},
+				setup = {
+					rust_analyzer = function(_, opts)
+						local rust_tools_opts = require("lazyvim.util").opts("rust-tools.nvim")
+						require("rust-tools").setup(
+							vim.tbl_deep_extend("force", rust_tools_opts or {}, { server = opts })
+						)
+						return true
+					end,
+					clangd = function(_, opts)
+						local clangd_ext_opts = require("lazyvim.util").opts("clangd_extensions.nvim")
+						require("clangd_extensions").setup(
+							vim.tbl_deep_extend("force", clangd_ext_opts or {}, { server = opts })
+						)
+						return false
+					end,
+					tailwindcss = function(_, opts)
+						local tw = require("lspconfig.server_configurations.tailwindcss")
+						--- @param ft string
+						opts.filetypes = vim.tbl_filter(function(ft)
+							return not vim.tbl_contains(opts.filetypes_exclude or {}, ft)
+						end, tw.default_config.filetypes)
+					end,
 				},
 			},
 		},
@@ -144,6 +255,8 @@ if true then
 					"vim",
 					"yaml",
 					"rust",
+					"toml",
+					"ron",
 					"cpp",
 					"go",
 				},
@@ -169,6 +282,7 @@ if true then
 					"black",
 					"rust-analyzer",
 					"rustfmt",
+					"codelldb",
 					"flake8",
 				},
 			},
@@ -285,7 +399,128 @@ if true then
 				},
 			},
 		},
-
+		-- Rust specific tooling
+		{
+			"Saecki/crates.nvim",
+			event = { "BufRead Cargo.toml" },
+			config = true,
+		},
+		{
+			"simrat39/rust-tools.nvim",
+			lazy = true,
+			opts = function()
+				local ok, mason_registry = pcall(require, "mason-registry")
+				local adapter ---@type any
+				if ok then
+					-- rust tools configuration for debugging support
+					local codelldb = mason_registry.get_package("codelldb")
+					local extension_path = codelldb:get_install_path() .. "/extension/"
+					local codelldb_path = extension_path .. "adapter/codelldb"
+					local liblldb_path = vim.fn.has("mac") == 1 and extension_path .. "lldb/lib/liblldb.dylib"
+						or extension_path .. "lldb/lib/liblldb.so"
+					adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path)
+				end
+				return {
+					dap = {
+						adapter = adapter,
+					},
+					tools = {
+						on_initialized = function()
+							vim.cmd([[
+                  augroup RustLSP
+                    autocmd CursorHold                      *.rs silent! lua vim.lsp.buf.document_highlight()
+                    autocmd CursorMoved,InsertEnter         *.rs silent! lua vim.lsp.buf.clear_references()
+                    autocmd BufEnter,CursorHold,InsertLeave *.rs silent! lua vim.lsp.codelens.refresh()
+                  augroup END
+                ]])
+						end,
+					},
+				}
+			end,
+			config = function() end,
+		},
+		-- Cpp specific stuff
+		{
+			"p00f/clangd_extensions.nvim",
+			lazy = true,
+			config = function() end,
+			opts = {
+				inlay_hints = {
+					inline = true,
+				},
+				ast = {
+					--These require codicons (https://github.com/microsoft/vscode-codicons)
+					role_icons = {
+						type = "",
+						declaration = "",
+						expression = "",
+						specifier = "",
+						statement = "",
+						["template argument"] = "",
+					},
+					kind_icons = {
+						Compound = "",
+						Recovery = "",
+						TranslationUnit = "",
+						PackExpansion = "",
+						TemplateTypeParm = "",
+						TemplateTemplateParm = "",
+						TemplateParamObject = "",
+					},
+				},
+			},
+		},
+		{
+			"mfussenegger/nvim-dap",
+			optional = true,
+			dependencies = {
+				-- Ensure C/C++ debugger is installed
+				"williamboman/mason.nvim",
+				optional = true,
+				opts = function(_, opts)
+					if type(opts.ensure_installed) == "table" then
+						vim.list_extend(opts.ensure_installed, { "codelldb" })
+					end
+				end,
+			},
+			opts = function()
+				local dap = require("dap")
+				if not dap.adapters["codelldb"] then
+					require("dap").adapters["codelldb"] = {
+						type = "server",
+						host = "localhost",
+						port = "${port}",
+						executable = {
+							command = "codelldb",
+							args = {
+								"--port",
+								"${port}",
+							},
+						},
+					}
+				end
+				for _, lang in ipairs({ "c", "cpp" }) do
+					dap.configurations[lang] = {
+						{
+							type = "codelldb",
+							request = "launch",
+							name = "Launch file",
+							program = function()
+								return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+							end,
+							cwd = "${workspaceFolder}",
+						},
+						{
+							type = "codelldb",
+							request = "attach",
+							name = "Attach to process",
+							processId = require("dap.utils").pick_process,
+							cwd = "${workspaceFolder}",
+						},
+					}
+				end
+			end,
+		},
 		-- Use <tab> for completion and snippets (supertab)
 		-- first: disable default <tab> and <s-tab> behavior in LuaSnip
 		{
@@ -308,6 +543,9 @@ if true then
 
 				local luasnip = require("luasnip")
 				local cmp = require("cmp")
+				opts.sources = cmp.config.sources(vim.list_extend(opts.sources, {
+					{ name = "crates" },
+				}))
 
 				opts.mapping = vim.tbl_extend("force", opts.mapping, {
 					["<C-n>"] = cmp.mapping.select_next_item(),
