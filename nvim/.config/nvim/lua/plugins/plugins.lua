@@ -1,6 +1,5 @@
 if true then
 	return {
-
 		{
 			"vigemus/iron.nvim",
 			event = "VeryLazy",
@@ -47,6 +46,17 @@ if true then
 				local iron = require("iron.core")
 				iron.setup(opts)
 			end,
+		},
+		{
+			"folke/tokyonight.nvim",
+			opts = {
+				style = "storm",
+				transparent = true,
+				styles = {
+					sidebars = "transparent",
+					floats = "transparent",
+				},
+			},
 		},
 
 		-- change trouble config
@@ -521,6 +531,20 @@ if true then
 				end
 			end,
 		},
+		{
+			"echasnovski/mini.surround",
+			opts = {
+				mappings = {
+					add = "gsa",
+					delete = "gsd",
+					find = "gsf",
+					find_left = "gsF",
+					highlight = "gsh",
+					replace = "gsr",
+					update_n_lines = "gsn",
+				},
+			},
+		},
 		-- Use <tab> for completion and snippets (supertab)
 		-- first: disable default <tab> and <s-tab> behavior in LuaSnip
 		{
@@ -564,8 +588,8 @@ if true then
 						-- this way you will only jump inside the snippet region
 						elseif luasnip.expand_or_jumpable() then
 							luasnip.expand_or_jump()
-						elseif has_words_before() then
-							cmp.complete()
+						-- elseif has_words_before() then
+						-- 	cmp.complete()
 						else
 							fallback()
 						end
