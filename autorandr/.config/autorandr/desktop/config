@@ -8,6 +8,8 @@ output VGA1
 off
 output VIRTUAL1
 off
+output None-2-1
+off
 output HDMI-0
 crtc 1
 mode 1920x1080
@@ -18,10 +20,11 @@ output DVI-D-0
 crtc 0
 mode 1920x1080
 pos 1920x0
+primary
 rate 60.00
 x-prop-non_desktop 0
 output HDMI2
-crtc 4
+crtc 5
 mode 1600x900
 pos 3840x90
 rate 59.95
@@ -29,5 +32,5 @@ x-prop-aspect_ratio Automatic
 x-prop-audio auto
 x-prop-broadcast_rgb Automatic
 x-prop-colorspace Default
-x-prop-max_bpc 8
+x-prop-max_bpc 12
 x-prop-non_desktop 0
