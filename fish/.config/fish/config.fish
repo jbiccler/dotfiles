@@ -9,7 +9,7 @@ zoxide init fish | source
 alias ls="lsd"
 alias gs="git status"
 alias ga="git add"
-alias gc="git commit"
+alias gc="git commit -m"
 alias gp="git pull"
 alias gP="git push"
 
