@@ -1,0 +1,186 @@
+#  ██   ████
+# ░██  ░██░
+# ░██ ██████ ██████  █████
+# ░██░░░██░ ░░██░░█ ██░░░██
+# ░██  ░██   ░██ ░ ░██  ░░
+# ░██  ░██   ░██   ░██   ██
+# ███  ░██  ░███   ░░█████
+#░░░   ░░   ░░░     ░░░░░
+
+# To get image previews, you need these 4 steps:
+# 1. Install ueberzug
+# 2. The previewer file (~/.config/lf/previewer for me), must have a command
+#    similar to mine to generate ueberzug images.
+# 3. A `set cleaner` line as below is a cleaner script.
+# 4. lf should be started through a wrapper script (~/.local/bin/lfub for me)
+#    that creates the environment for ueberzug. This command can be be aliased
+#    in your shellrc (`alias lf="lfub").
+
+# Main options
+set icons
+set period 1
+#set relativenumber
+#set number
+set hidden!
+set hiddenfiles ".*:*.aux:*.log:*.bbl:*.bcf:*.blg:*.run.xml"
+set previewer ctpv
+set cleaner ctpvclear
+&ctpv -s $id
+&ctpvquit $id
+set promptfmt "
+\033[48;2;35;38;39;38;2;28;220;156m  
+\033[38;2;35;38;39;48;2;202;31;31m
+\033[38;2;202;31;31;48;2;40;47;62m
+\033[38;2;255;255;255m %w 
+\033[38;2;40;47;62;48;2;58;67;89m
+\033[38;2;255;255;255m %f 
+\033[;38;2;58;67;89;49m\033[m"
+set incsearch
+set incfilter
+#set globsearch on
+set ratios 2:3:4 # 2:3:7:7
+set truncatechar "…"
+set waitmsg "\033[1;31m⏎\033[m"
+set timefmt "02/01/2006 15:04:05 "
+set infotimefmtnew '02/01 15:04'
+set infotimefmtold '02/01/06'
+set errorfmt "\033[1;31m"
+set numberfmt "\033[38;2;75;87;116m"
+set dircounts
+set tabstop 4
+set scrolloff 5
+set wrapscroll
+set shellopts '-eu'
+set ifs "\n"
+set shell "bash"
+set ruler 'df:acc:progress:selection:filter:ind'
+set cursorpreviewfmt "\033[7m"
+
+source '~/.config/lf/opener'
+
+%test $LF_LEVEL -eq 1 || >&2 printf "Warning: You're in a nested lf instance!"
+
+cmd mkdir $mkdir -p "$(echo $* | tr ' ' '\ ')"
+cmd trash %trash-put $fx
+
+
+cmd delete ${{
+	clear; tput cup $(($(tput lines)/3)); tput bold
+	set -f
+	printf -- "%s\n" $fx | sed 's|'"$HOME"'||'
+	printf "\t\033[1;33m¿Remover? \033[37m[\033[32ms\033[37m/\033[31mN\033[37m]\033[m "
+	read -r REPLY
+	case "$REPLY" in
+		[yYsS]) rm -rf -- $fx ;;
+	esac
+}}
+
+
+cmd chmodx &{{
+	chmod u+x $fx
+	lf -remote "send $id reload"
+}}
+
+cmd extract ${{
+	clear; tput cup $(($(tput lines)/3)); tput bold
+	set -f
+	printf -- "%s\n" $fx
+	printf "\t\033[1;34m¿Extraer? \033[37m[\033[32ms\033[37m/\033[31mN\033[37m]\033[m "
+	read -r REPLY
+	case "$REPLY" in
+		[yYsS]) aunpack $fx ;;
+	esac
+}}
+
+cmd stop ${{
+	kill -TSTP $(ps -p $$ -o 'ppid=')
+}}
+
+cmd fzf $vi $(find . -name "$1" | fzf)
+
+cmd fzf_search ${{
+    RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
+    res="$(
+        FZF_DEFAULT_COMMAND="$RG_PREFIX ''" \
+            fzf --bind "change:reload:$RG_PREFIX {q} || true" \
+            --ansi --layout=reverse --header 'Search in files' \
+            | cut -d':' -f1 | sed 's/\\/\\\\/g;s/"/\\"/g'
+    )"
+    [ -n "$res" ] && lf -remote "send $id select \"$res\""
+}}
+cmd fzf_jump ${{
+    res="$(find . -maxdepth 1 | fzf --reverse --header='Jump to location')"
+    if [ -n "$res" ]; then
+        if [ -d "$res" ]; then
+            cmd="cd"
+        else
+            cmd="select"
+        fi
+        res="$(printf '%s' "$res" | sed 's/\\/\\\\/g;s/"/\\"/g')"
+        lf -remote "send $id $cmd \"$res\""
+    fi
+}}
+
+cmd setbg "$1"
+
+# Movement
+#map <enter> open
+#map <s-enter> openwith
+map { half-up
+map } half-down
+map <c-n> down
+map <c-p> up
+
+# File name search
+# Dependency: my 'ffd' script which uses:
+# - fd or find, fzf, tput; bat and lsd (for previews)
+map f push :fzf<space>
+map <c-f> :fzf_jump
+map <a-f> :fzf_search
+map F fd .
+map /  search
+map zf find
+map zF find-back
+map rg ripgrep
+
+map n $nvim .
+
+# Main maps
+map . set hidden!
+map ? maps  # List normal mode mappings
+map d
+map dd cut
+map D delete
+map <a-d> trash
+map <a-D> shred
+map E extract
+#map C copyto
+#map M moveto
+map P paste_link
+map A push :mkdir<space>
+map a push $touch<space>
+map <a-r> reload
+map <a-x> chmodx
+map <a-X> $setbg $f
+map U glob-unselect *
+map <a-u> glob-select *
+
+# Navigation
+map gD cd ~/Documents/
+map gd cd ~/Downloads/
+map gc cd ~/dotfiles/
+map J jumps
+
+# Command mode
+cmap <tab> cmd-menu-complete
+cmap <backtab> cmd-menu-complete-back
+cmap <a-h> cmd-left
+cmap <a-l> cmd-right
+cmap <a-,> cmd-delete
+
+# Renaming
+map q stop
+
+# Copy selected file names
+map Y $printf "%s" "$fx" | xclip -selection clipboard
+
