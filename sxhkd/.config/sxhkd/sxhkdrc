@@ -160,26 +160,13 @@ alt + {_,shift}Tab
 
 #####
 # scratchpad
-# https://github.com/noctuid/tdrop
-# https://my-take-on.tech/2020/07/03/some-tricks-for-sxhkd-and-bspwm/
 #####
 
-# negative -w arg to account for a border width (default: 100%)
 alt + 1
-    tdrop -ma -w 50% -h 50% -y 16 -x 25% alacritty --class=tdrop -t tdrop
-
-#alt + 2
-#	"$HOME"/.config/bspwm/bspwm-toggle-visibility.sh keepassxc
-
-#alt + 3
-#	"$HOME"/.config/bspwm/bspwm-toggle-visibility.sh streamlink-twitch-gui
-
-# negative -w arg to account for a border width (default: 100%)
-#alt + 4
-#    tdrop -m -w 50% -h 50% -y 16 -x 25% keepassxc --class=keepasxc -t tdrop
+    tdrop -ma -w 50% -h 50% -y 16 -x 25% -n 0 alacritty
 
 alt + 2
-	tdrop -ma -a -w 50% -h 50% -y 16 -x 25% -n 1 current
+	tdrop -ma -a -w 50% -h 50% -y 16 -x 25% -n 1 keepassxc
 
 alt + 3
 	tdrop -ma -a -w 50% -h 50% -y 16 -x 25% -n 2 current
