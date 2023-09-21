@@ -102,7 +102,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias  l='eza -l  --icons'
+alias l='eza -1  --icons'
 alias ls='eza  --icons'
 alias ll='eza -la --icons'
 alias ld='eza -lD --icons'
@@ -121,6 +121,9 @@ alias gp="git pull"
 alias gP="git push"
 alias gc="git commit -m"
 
+alias cl="clear"
+alias cd="z"
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -132,3 +135,7 @@ pokemon-colorscripts --no-title -r 1,3,6
 
 #Display random gifs
 #kitten icat --align left $(find $HOME/.config/neofetch/gifs/ -name "*.gif" | sort -R | head -1)
+
+
+# Zoxide
+eval "$(zoxide init zsh)"
