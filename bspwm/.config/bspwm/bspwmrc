@@ -3,11 +3,11 @@
 #### AUTOSTART ####
 # Set display from arandr saved script
 # sh ~/.config/bspwm/monitor.sh &
-autorandr --load desktop
+# autorandr --load desktop
 
-bspc monitor DVI-D-0 -d 1 2 3 4
 bspc monitor HDMI-0 -d 1 2 3 4
-bspc monitor HDMI2 -d 1 2 3 4
+bspc monitor DP-2 -d 5 6
+bspc monitor DP-4 -d 7 8
 
 # Notifications
 /usr/bin/dunst &
@@ -15,7 +15,7 @@ nm-applet --indicator &
 
 picom --config $HOME/.config/picom.conf &
 # feh --randomize --bg-fill "/mnt/SecondSSD/Users/Jaron/MEGA/Afbeeldingen/Background/Peak Aesthetics/"* &
-feh --randomize --bg-fill "/mnt/SecondSSD/Users/Jaron/MEGA/Afbeeldingen/Background/Anime/"* &
+feh --randomize --bg-fill "/home/jaron/MEGA/Afbeeldingen/Background/Anime/"* &
 # Polkit
 /usr/lib/polkit-kde-authentication-agent-1 &
 # /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
