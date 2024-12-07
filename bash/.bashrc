@@ -5,38 +5,6 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-[[ -f ~/.welcome_screen ]] && . ~/.welcome_screen
-
-_set_liveuser_PS1() {
-	PS1='[\u@\h \W]\$ '
-	if [ "$(whoami)" = "liveuser" ]; then
-		local iso_version="$(grep ^VERSION= /usr/lib/endeavouros-release 2>/dev/null | cut -d '=' -f 2)"
-		if [ -n "$iso_version" ]; then
-			local prefix="eos-"
-			local iso_info="$prefix$iso_version"
-			PS1="[\u@$iso_info \W]\$ "
-		fi
-	fi
-}
-_set_liveuser_PS1
-unset -f _set_liveuser_PS1
-
-ShowInstallerIsoInfo() {
-	local file=/usr/lib/endeavouros-release
-	if [ -r $file ]; then
-		cat $file
-	else
-		echo "Sorry, installer ISO info is not available." >&2
-	fi
-}
-
-alias ls='lsd -a'
-#alias ls='ls --color=auto'
-alias ll='ls -lav --ignore=..' # show long listing of all except ".."
-alias l='ls -lav --ignore=.?*' # show long listing but no hidden dotfiles except "."
-
-[[ "$(whoami)" = "root" ]] && return
-
 [[ -z "$FUNCNEST" ]] && export FUNCNEST=100 # limits recursive functions, see 'man bash'
 
 ## Use the up and down arrow keys for finding a command in history
@@ -44,45 +12,50 @@ alias l='ls -lav --ignore=.?*' # show long listing but no hidden dotfiles except
 bind '"\e[A":history-search-backward'
 bind '"\e[B":history-search-forward'
 
-################################################################################
-## Some generally useful functions.
-## Consider uncommenting aliases below to start using these functions.
-##
-## October 2021: removed many obsolete functions. If you still need them, please look at
-## https://github.com/EndeavourOS-archive/EndeavourOS-archiso/raw/master/airootfs/etc/skel/.bashrc
+export EDITOR=nvim
 
-_open_files_for_editing() {
-	# Open any given document file(s) for editing (or just viewing).
-	# Note1:
-	#    - Do not use for executable files!
-	# Note2:
-	#    - Uses 'mime' bindings, so you may need to use
-	#      e.g. a file manager to make proper file bindings.
 
-	if [ -x /usr/bin/exo-open ]; then
-		echo "exo-open $@" >&2
-		setsid exo-open "$@" >&/dev/null
-		return
-	fi
-	if [ -x /usr/bin/xdg-open ]; then
-		for file in "$@"; do
-			echo "xdg-open $file" >&2
-			setsid xdg-open "$file" >&/dev/null
-		done
-		return
-	fi
+# -----------------------------------------------------
+# ALIASES
+# -----------------------------------------------------
 
-	echo "$FUNCNAME: package 'xdg-utils' or 'exo' is required." >&2
-}
+# -----------------------------------------------------
+# General
+# -----------------------------------------------------
+alias grep='grep --color=auto'
+PS1='[\u@\h \W]\$ '
 
-#------------------------------------------------------------
 
-## Aliases for the functions above.
-## Uncomment an alias if you want to use it.
-##
+alias cl='clear'
+alias nf='fastfetch'
+alias pf='fastfetch'
+alias ff='fastfetch'
+alias ls='eza -a --icons=always'
+alias ll='eza -al --icons=always'
+alias lt='eza -a --tree --level=1 --icons=always'
+alias shutdown='systemctl poweroff'
+alias v='$EDITOR'
+alias vim='$EDITOR'
 
-# alias ef='_open_files_for_editing'     # 'ef' opens given file(s) for editing
-# alias pacdiff=eos-pacdiff
-################################################################################
+alias c23="g++ -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -Werror -pedantic-errors -ggdb -std=c++23"
+alias c20="g++ -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -Werror -pedantic-errors -ggdb -std=c++20"
+alias c="g++ -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -Werror -pedantic-errors -ggdb"
 
-. "$HOME/.cargo/env"
+# -----------------------------------------------------
+# Git
+# -----------------------------------------------------
+alias gs="git status"
+alias ga="git add"
+alias gc="git commit -m"
+alias gp="git push"
+alias gP="git pull"
+alias gst="git stash"
+alias gsp="git stash; git pull"
+alias gfo="git fetch origin"
+alias gcheck="git checkout"
+alias gcredential="git config credential.helper store"
+
+# -----------------------------------------------------
+# CUSTOMIZATION
+# -----------------------------------------------------
+eval "$(starship init bash)"
