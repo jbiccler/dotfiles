@@ -39,6 +39,7 @@ source $ZSH/oh-my-zsh.sh
 # -----------------------------------------------------
 # General
 # -----------------------------------------------------
+alias cd='z'
 alias cl='clear'
 alias nf='fastfetch'
 alias pf='fastfetch'
@@ -72,6 +73,9 @@ alias c23="g++ -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -Werror -pe
 alias c20="g++ -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -Werror -pedantic-errors -ggdb -std=c++20"
 alias c="g++ -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -Werror -pedantic-errors -ggdb"
 
-
+alias cr="cargo run"
+alias cb="cargo build"
+alias ct="cargo test"
 
 eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"

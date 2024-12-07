@@ -14,7 +14,6 @@ bind '"\e[B":history-search-forward'
 
 export EDITOR=nvim
 
-
 # -----------------------------------------------------
 # ALIASES
 # -----------------------------------------------------
@@ -25,7 +24,7 @@ export EDITOR=nvim
 alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
 
-
+alias cd='z'
 alias cl='clear'
 alias nf='fastfetch'
 alias pf='fastfetch'
@@ -40,6 +39,10 @@ alias vim='$EDITOR'
 alias c23="g++ -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -Werror -pedantic-errors -ggdb -std=c++23"
 alias c20="g++ -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -Werror -pedantic-errors -ggdb -std=c++20"
 alias c="g++ -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -Werror -pedantic-errors -ggdb"
+
+alias cr="cargo run"
+alias cb="cargo build"
+alias ct="cargo test"
 
 # -----------------------------------------------------
 # Git
@@ -59,3 +62,4 @@ alias gcredential="git config credential.helper store"
 # CUSTOMIZATION
 # -----------------------------------------------------
 eval "$(starship init bash)"
+eval "$(zoxide init bash)"
