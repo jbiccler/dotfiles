@@ -4,3 +4,5 @@
 local opt = vim.opt
 opt.clipboard = ""
 vim.wo.relativenumber = true
+-- Saved state for session
+opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "winpos", "globals", "folds" }
