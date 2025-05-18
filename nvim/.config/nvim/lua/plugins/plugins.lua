@@ -441,8 +441,6 @@ if true then
 				},
 			},
 		},
-
-		,
 		-- {
 		-- 	"phaazon/hop.nvim",
 		-- 	event = "BufRead",
@@ -727,7 +725,7 @@ if true then
 				})
 			end,
 		},
-    {
+		{
 			"folke/flash.nvim",
 			event = "VeryLazy",
 			---@type Flash.Config
