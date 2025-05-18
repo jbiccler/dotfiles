@@ -48,9 +48,9 @@ map("n", "<leader>R", [[:silent !tmux send-keys -t 1 "\!\!" Enter <CR>]], { desc
 -- map("n", "<leader>r", [[:silent !tmux send-keys -t 1 "python " %:p Enter <CR>]], { desc = "Execute Python" })
 
 -- Hop
-map("n", "s", ":silent HopChar2<cr>", { desc = "HopChar2" })
-map("n", "<M-s>", ":silent HopPattern<cr>", { desc = "HopPattern" })
-map("n", "S", ":silent HopWord<cr>", { desc = "HopWord" })
+-- map("n", "s", ":silent HopChar2<cr>", { desc = "HopChar2" })
+-- map("n", "<M-s>", ":silent HopPattern<cr>", { desc = "HopPattern" })
+-- map("n", "S", ":silent HopWord<cr>", { desc = "HopWord" })
 
 -- Move lines
 map("n", "<M-j>", ":m .+1<CR>==", { desc = "Move line down" })

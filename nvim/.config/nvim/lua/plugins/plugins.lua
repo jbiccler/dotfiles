@@ -441,30 +441,32 @@ if true then
 				},
 			},
 		},
-		{
-			"phaazon/hop.nvim",
-			event = "BufRead",
-			config = function()
-				require("hop").setup()
-				vim.api.nvim_set_keymap("n", "<leader><leader>s", ":HopChar2<cr>", { silent = true })
-				vim.api.nvim_set_keymap("n", "<leader><leader><M-s>", ":HopPattern<cr>", { silent = true })
-				vim.api.nvim_set_keymap("n", "<leader><leader>S", ":HopWord<cr>", { silent = true })
-				vim.api.nvim_set_keymap("n", "f", ":HopChar1AC<cr>", { silent = true })
-				vim.api.nvim_set_keymap("n", "F", ":HopChar1BC<cr>", { silent = true })
-				vim.api.nvim_set_keymap(
-					"n",
-					"t",
-					":lua require'hop'.hint_char1({direction = require'hop.hint'.HintDirection.AFTER_CURSOR,hint_offset = -1})<cr>",
-					{ silent = true }
-				)
-				vim.api.nvim_set_keymap(
-					"n",
-					"T",
-					":lua require('hop').hint_char1({direction = require('hop.hint').HintDirection.BEFORE_CURSOR,hint_offset = 1})<cr>",
-					{ silent = true }
-				)
-			end,
-		},
+
+		,
+		-- {
+		-- 	"phaazon/hop.nvim",
+		-- 	event = "BufRead",
+		-- 	config = function()
+		-- 		require("hop").setup()
+		-- 		vim.api.nvim_set_keymap("n", "<leader><leader>s", ":HopChar2<cr>", { silent = true })
+		-- 		vim.api.nvim_set_keymap("n", "<leader><leader><M-s>", ":HopPattern<cr>", { silent = true })
+		-- 		vim.api.nvim_set_keymap("n", "<leader><leader>S", ":HopWord<cr>", { silent = true })
+		-- 		vim.api.nvim_set_keymap("n", "f", ":HopChar1AC<cr>", { silent = true })
+		-- 		vim.api.nvim_set_keymap("n", "F", ":HopChar1BC<cr>", { silent = true })
+		-- 		vim.api.nvim_set_keymap(
+		-- 			"n",
+		-- 			"t",
+		-- 			":lua require'hop'.hint_char1({direction = require'hop.hint'.HintDirection.AFTER_CURSOR,hint_offset = -1})<cr>",
+		-- 			{ silent = true }
+		-- 		)
+		-- 		vim.api.nvim_set_keymap(
+		-- 			"n",
+		-- 			"T",
+		-- 			":lua require('hop').hint_char1({direction = require('hop.hint').HintDirection.BEFORE_CURSOR,hint_offset = 1})<cr>",
+		-- 			{ silent = true }
+		-- 		)
+		-- 	end,
+		-- },
 		-- {
 		--   "rmagatti/auto-session",
 		--   opts = {
@@ -724,6 +726,20 @@ if true then
 					end, { "i", "s" }),
 				})
 			end,
+		},
+    {
+			"folke/flash.nvim",
+			event = "VeryLazy",
+			---@type Flash.Config
+			opts = {},
+        -- stylua: ignore
+        keys = {
+          { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+          { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+          { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+          { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+          { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+      },
 		},
 	}
 end
