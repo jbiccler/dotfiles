@@ -215,9 +215,6 @@ if true then
 							clangdFileStatus = true,
 						},
 					},
-					tailwindcss = {
-						filetypes_exclude = { "markdown" },
-					},
 				},
 				setup = {
 					rust_analyzer = function(_, opts)
@@ -233,13 +230,6 @@ if true then
 							vim.tbl_deep_extend("force", clangd_ext_opts or {}, { server = opts })
 						)
 						return false
-					end,
-					tailwindcss = function(_, opts)
-						local tw = require("lspconfig.server_configurations.tailwindcss")
-						--- @param ft string
-						opts.filetypes = vim.tbl_filter(function(ft)
-							return not vim.tbl_contains(opts.filetypes_exclude or {}, ft)
-						end, tw.default_config.filetypes)
 					end,
 				},
 			},
@@ -675,6 +665,12 @@ if true then
 			keys = function()
 				return {}
 			end,
+		},
+		{
+			"m4xshen/hardtime.nvim",
+			lazy = false,
+			dependencies = { "MunifTanjim/nui.nvim" },
+			opts = {},
 		},
 		-- then: setup supertab in cmp
 		{
