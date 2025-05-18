@@ -10,7 +10,7 @@ configuration {
 
 }
 
-@theme "~/.config/rofi/theme.rasi"
+//@theme "~/.config/rofi/theme.rasi"
 
 window {
 	width: 45%;
@@ -87,3 +87,5 @@ prompt {
   padding: 12 0 0 12;
   text-color: @fg;
 }
+
+@theme "/home/jaron/.local/share/rofi/themes/style_1.rasi"
