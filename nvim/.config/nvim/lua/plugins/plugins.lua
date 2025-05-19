@@ -74,200 +74,13 @@ if true then
 			config = true,
 		},
 
-		-- change some telescope options and a keymap to browse plugin files
-		{
-			"nvim-telescope/telescope.nvim",
-			keys = {
-        -- stylua: ignore
-          -- disable the keymap to grep files
-          { "<leader><space>", false },
-				-- add a keymap to browse plugin files
-				{
-					"<leader>fp",
-					function()
-						require("telescope.builtin").find_files({ cwd = require("lazy.core.config").options.root })
-					end,
-					desc = "Find Plugin File",
-				},
-			},
-		},
-
-		-- add telescope-fzf-native
-		{
-			"telescope.nvim",
-			dependencies = {
-				"nvim-telescope/telescope-fzf-native.nvim",
-				build = "make",
-				config = function()
-					require("telescope").load_extension("fzf")
-				end,
-			},
-		},
-
-		-- add pyright to lspconfig
-		{
-			"neovim/nvim-lspconfig",
-			---@class PluginLspOpts
-			opts = {
-				diagnostics = {
-					underline = true,
-					update_in_insert = false,
-					virtual_text = { spacing = 4, prefix = "●" },
-					severity_sort = true,
-				},
-				-- Automatically format on save
-				autoformat = true,
-				-- options for vim.lsp.buf.format
-				-- `bufnr` and `filter` is handled by the LazyVim formatter,
-				-- but can be also overridden when specified
-				format = {
-					formatting_options = nil,
-					timeout_ms = nil,
-				},
-				---@type lspconfig.options
-				servers = {
-					-- pyright will be automatically installed with mason and loaded with lspconfig
-					pyright = {},
-					lua_ls = {},
-					rust_analyzer = {
-						keys = {
-							{ "K", "<cmd>RustHoverActions<cr>", desc = "Hover Actions (Rust)" },
-							{ "<leader>cR", "<cmd>RustCodeAction<cr>", desc = "Code Action (Rust)" },
-							{ "<leader>dr", "<cmd>RustDebuggables<cr>", desc = "Run Debuggables (Rust)" },
-						},
-						settings = {
-							["rust-analyzer"] = {
-								cargo = {
-									allFeatures = true,
-									loadOutDirsFromCheck = true,
-									runBuildScripts = true,
-								},
-								-- Add clippy lints for Rust.
-								checkOnSave = {
-									allFeatures = true,
-									command = "clippy",
-									extraArgs = { "--no-deps" },
-								},
-								procMacro = {
-									enable = true,
-									ignored = {
-										["async-trait"] = { "async_trait" },
-										["napi-derive"] = { "napi" },
-										["async-recursion"] = { "async_recursion" },
-									},
-								},
-							},
-						},
-					},
-					taplo = {
-						keys = {
-							{
-								"K",
-								function()
-									if vim.fn.expand("%:t") == "Cargo.toml" and require("crates").popup_available() then
-										require("crates").show_popup()
-									else
-										vim.lsp.buf.hover()
-									end
-								end,
-								desc = "Show Crate Documentation",
-							},
-						},
-					},
-					neocmake = {},
-					clangd = {
-						keys = {
-							{
-								"<leader>cR",
-								"<cmd>ClangdSwitchSourceHeader<cr>",
-								desc = "Switch Source/Header (C/C++)",
-							},
-						},
-						root_dir = function(fname)
-							return require("lspconfig.util").root_pattern(
-								"Makefile",
-								"configure.ac",
-								"configure.in",
-								"config.h.in",
-								"meson.build",
-								"meson_options.txt",
-								"build.ninja"
-							)(fname) or require("lspconfig.util").root_pattern(
-								"compile_commands.json",
-								"compile_flags.txt"
-							)(fname) or require("lspconfig.util").find_git_ancestor(fname)
-						end,
-						capabilities = {
-							offsetEncoding = { "utf-16" },
-						},
-						cmd = {
-							"clangd",
-							"--background-index",
-							"--clang-tidy",
-							"--header-insertion=iwyu",
-							"--completion-style=detailed",
-							"--function-arg-placeholders",
-							"--fallback-style=llvm",
-						},
-						init_options = {
-							usePlaceholders = true,
-							completeUnimported = true,
-							clangdFileStatus = true,
-						},
-					},
-				},
-				setup = {
-					rust_analyzer = function(_, opts)
-						local rust_tools_opts = require("lazyvim.util").opts("rust-tools.nvim")
-						require("rust-tools").setup(
-							vim.tbl_deep_extend("force", rust_tools_opts or {}, { server = opts })
-						)
-						return true
-					end,
-					clangd = function(_, opts)
-						local clangd_ext_opts = require("lazyvim.util").opts("clangd_extensions.nvim")
-						require("clangd_extensions").setup(
-							vim.tbl_deep_extend("force", clangd_ext_opts or {}, { server = opts })
-						)
-						return false
-					end,
-				},
-			},
-		},
-
 		-- add more treesitter parsers
 		{
 			"nvim-treesitter/nvim-treesitter",
 			opts = {
 				ensure_installed = {
-					"bash",
-					"html",
-					"javascript",
-					"json",
-					"lua",
-					"markdown",
-					"markdown_inline",
-					"python",
-					"query",
-					"regex",
-					"tsx",
-					"typescript",
-					"vim",
-					"yaml",
-					"rust",
-					"toml",
-					"ron",
 					"cpp",
 					"go",
-				},
-				incremental_selection = {
-					enable = true,
-					keymaps = {
-						init_selection = "<C-space>",
-						node_incremental = "<C-space>",
-						scope_incremental = "<C-s>",
-						node_decremental = "<bs>",
-					},
 				},
 				textobjects = {
 					select = {
@@ -366,27 +179,21 @@ if true then
 			},
 		},
 
-		-- use mini.starter instead of alpha
-		{ import = "lazyvim.plugins.extras.ui.mini-starter" },
-
-		-- add jsonls and schemastore packages, and setup treesitter for json, json5 and jsonc
-		{ import = "lazyvim.plugins.extras.lang.json" },
-
-		-- add any tools you want to have installed below
+		-- Add default installed options to Mason
 		{
-			"williamboman/mason.nvim",
+			"mason-org/mason.nvim",
 			opts = {
 				ensure_installed = {
-					"stylua",
 					"shellcheck",
 					"shfmt",
+					"stylua",
 					"flake8",
 					"pyright",
-					"black",
+					"ruff",
 					"rust-analyzer",
-					"rustfmt",
+					"clangd",
 					"codelldb",
-					"flake8",
+					"taplo",
 				},
 			},
 		},
@@ -442,20 +249,6 @@ if true then
 			},
 		},
 		{
-			"iamcco/markdown-preview.nvim",
-			ft = "markdown",
-			-- build = "cd app && yarn install",
-			build = ":call mkdp#util#install()",
-		},
-		{
-			"nvim-treesitter/nvim-treesitter-context",
-			dependencies = {
-				{
-					"nvim-treesitter/nvim-treesitter",
-				},
-			},
-		},
-		{
 			"nvim-neo-tree/neo-tree.nvim",
 			opts = {
 				window = {
@@ -471,236 +264,19 @@ if true then
 				},
 			},
 		},
-		-- Rust specific tooling
-		{
-			"Saecki/crates.nvim",
-			event = { "BufRead Cargo.toml" },
-			config = true,
-		},
-		{
-			"simrat39/rust-tools.nvim",
-			lazy = true,
-			opts = function()
-				local ok, mason_registry = pcall(require, "mason-registry")
-				local adapter ---@type any
-				if ok then
-					-- rust tools configuration for debugging support
-					local codelldb = mason_registry.get_package("codelldb")
-					local extension_path = codelldb:get_install_path() .. "/extension/"
-					local codelldb_path = extension_path .. "adapter/codelldb"
-					local liblldb_path = vim.fn.has("mac") == 1 and extension_path .. "lldb/lib/liblldb.dylib"
-						or extension_path .. "lldb/lib/liblldb.so"
-					adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path)
-				end
-				return {
-					dap = {
-						adapter = adapter,
-					},
-					tools = {
-						on_initialized = function()
-							vim.cmd([[
-                  augroup RustLSP
-                    autocmd CursorHold                      *.rs silent! lua vim.lsp.buf.document_highlight()
-                    autocmd CursorMoved,InsertEnter         *.rs silent! lua vim.lsp.buf.clear_references()
-                    autocmd BufEnter,CursorHold,InsertLeave *.rs silent! lua vim.lsp.codelens.refresh()
-                  augroup END
-                ]])
-						end,
-					},
-				}
-			end,
-			config = function() end,
-		},
-		-- Cpp specific stuff
-		{
-			"p00f/clangd_extensions.nvim",
-			lazy = true,
-			config = function() end,
-			opts = {
-				inlay_hints = {
-					inline = true,
-				},
-				ast = {
-					--These require codicons (https://github.com/microsoft/vscode-codicons)
-					role_icons = {
-						type = "",
-						declaration = "",
-						expression = "",
-						specifier = "",
-						statement = "",
-						["template argument"] = "",
-					},
-					kind_icons = {
-						Compound = "",
-						Recovery = "",
-						TranslationUnit = "",
-						PackExpansion = "",
-						TemplateTypeParm = "",
-						TemplateTemplateParm = "",
-						TemplateParamObject = "",
-					},
-				},
-			},
-		},
-		{
-			"mfussenegger/nvim-dap",
-			optional = true,
-			dependencies = {
-				-- Ensure C/C++ debugger is installed
-				"williamboman/mason.nvim",
-				optional = true,
-				opts = function(_, opts)
-					if type(opts.ensure_installed) == "table" then
-						vim.list_extend(opts.ensure_installed, { "codelldb" })
-					end
-				end,
-			},
-			opts = function()
-				local dap = require("dap")
-				if not dap.adapters["codelldb"] then
-					require("dap").adapters["codelldb"] = {
-						type = "server",
-						host = "localhost",
-						port = "${port}",
-						executable = {
-							command = "codelldb",
-							args = {
-								"--port",
-								"${port}",
-							},
-						},
-					}
-				end
-				for _, lang in ipairs({ "c", "cpp" }) do
-					dap.configurations[lang] = {
-						{
-							type = "codelldb",
-							request = "launch",
-							name = "Launch file",
-							program = function()
-								return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-							end,
-							cwd = "${workspaceFolder}",
-						},
-						{
-							type = "codelldb",
-							request = "attach",
-							name = "Attach to process",
-							processId = require("dap.utils").pick_process,
-							cwd = "${workspaceFolder}",
-						},
-					}
-				end
-			end,
-		},
-		{
-			"echasnovski/mini.surround",
-			opts = {
-				mappings = {
-					add = "gsa",
-					delete = "gsd",
-					find = "gsf",
-					find_left = "gsF",
-					highlight = "gsh",
-					replace = "gsr",
-					update_n_lines = "gsn",
-				},
-			},
-		},
-		{
-			"echasnovski/mini.pairs",
-			event = "VeryLazy",
-			opts = {},
-			keys = {
-				{
-					"<leader>up",
-					function()
-						local Util = require("lazy.core.util")
-						vim.g.minipairs_disable = not vim.g.minipairs_disable
-						if vim.g.minipairs_disable then
-							Util.warn("Disabled auto pairs", { title = "Option" })
-						else
-							Util.info("Enabled auto pairs", { title = "Option" })
-						end
-					end,
-					desc = "Toggle auto pairs",
-				},
-			},
-		},
-		-- Use <tab> for completion and snippets (supertab)
-		-- first: disable default <tab> and <s-tab> behavior in LuaSnip
-		{
-			"L3MON4D3/LuaSnip",
-			keys = function()
-				return {}
-			end,
-		},
 		{
 			"m4xshen/hardtime.nvim",
 			lazy = false,
 			dependencies = { "MunifTanjim/nui.nvim" },
 			opts = {},
 		},
-		-- then: setup supertab in cmp
-		{
-			"hrsh7th/nvim-cmp",
-			---@param opts cmp.ConfigSchema
-			opts = function(_, opts)
-				local has_words_before = function()
-					unpack = unpack or table.unpack
-					local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-					return col ~= 0
-						and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-				end
-
-				local luasnip = require("luasnip")
-				local cmp = require("cmp")
-				opts.sources = cmp.config.sources(vim.list_extend(opts.sources, {
-					{ name = "crates" },
-				}))
-
-				opts.mapping = vim.tbl_extend("force", opts.mapping, {
-					["<C-n>"] = cmp.mapping.select_next_item(),
-					["<C-p>"] = cmp.mapping.select_prev_item(),
-					["<C-d>"] = cmp.mapping.scroll_docs(-4),
-					["<C-f>"] = cmp.mapping.scroll_docs(4),
-					["<C-Space>"] = cmp.mapping.complete({}),
-					["<CR>"] = cmp.mapping.confirm({
-						behavior = cmp.ConfirmBehavior.Replace,
-						select = true,
-					}),
-					["<Tab>"] = cmp.mapping(function(fallback)
-						if cmp.visible() then
-							cmp.select_next_item()
-						-- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-						-- this way you will only jump inside the snippet region
-						elseif luasnip.expand_or_jumpable() then
-							luasnip.expand_or_jump()
-						-- elseif has_words_before() then
-						-- 	cmp.complete()
-						else
-							fallback()
-						end
-					end, { "i", "s" }),
-					["<S-Tab>"] = cmp.mapping(function(fallback)
-						if cmp.visible() then
-							cmp.select_prev_item()
-						elseif luasnip.jumpable(-1) then
-							luasnip.jump(-1)
-						else
-							fallback()
-						end
-					end, { "i", "s" }),
-				})
-			end,
-		},
-		-- Set which-key to classic layout
+		-- Set which-key layout
 		{
 			"folke/which-key.nvim",
 			event = "VeryLazy",
 			opts_extend = { "spec" },
 			opts = {
-				preset = "classic",
+				preset = "modern",
 				win = {
 					no_overlap = false,
 				},
