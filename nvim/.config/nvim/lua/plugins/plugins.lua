@@ -101,8 +101,8 @@ if true then
 							["aa"] = { query = "@parameter.outer", desc = "Select outer part of a parameter/argument" },
 							["ia"] = { query = "@parameter.inner", desc = "Select inner part of a parameter/argument" },
 
-							["ai"] = { query = "@conditional.outer", desc = "Select outer part of a conditional" },
-							["ii"] = { query = "@conditional.inner", desc = "Select inner part of a conditional" },
+							-- ["ai"] = { query = "@conditional.outer", desc = "Select outer part of a conditional" },
+							-- ["ii"] = { query = "@conditional.inner", desc = "Select inner part of a conditional" },
 
 							["al"] = { query = "@loop.outer", desc = "Select outer part of a loop" },
 							["il"] = { query = "@loop.inner", desc = "Select inner part of a loop" },
@@ -145,8 +145,8 @@ if true then
 							["]f"] = { query = "@call.outer", desc = "Next function call start" },
 							["]m"] = { query = "@function.outer", desc = "Next method/function def start" },
 							["]c"] = { query = "@class.outer", desc = "Next class start" },
-							["]i"] = { query = "@conditional.outer", desc = "Next conditional start" },
-							["]l"] = { query = "@loop.outer", desc = "Next loop start" },
+							-- ["]i"] = { query = "@conditional.outer", desc = "Next conditional start" },
+							-- ["]l"] = { query = "@loop.outer", desc = "Next loop start" },
 
 							-- You can pass a query group to use query from `queries/<lang>/<query_group>.scm file in your runtime path.
 							-- Below example nvim-treesitter's `locals.scm` and `folds.scm`. They also provide highlights.scm and indent.scm.
@@ -157,22 +157,22 @@ if true then
 							["]F"] = { query = "@call.outer", desc = "Next function call end" },
 							["]M"] = { query = "@function.outer", desc = "Next method/function def end" },
 							["]C"] = { query = "@class.outer", desc = "Next class end" },
-							["]I"] = { query = "@conditional.outer", desc = "Next conditional end" },
-							["]L"] = { query = "@loop.outer", desc = "Next loop end" },
+							-- ["]I"] = { query = "@conditional.outer", desc = "Next conditional end" },
+							-- ["]L"] = { query = "@loop.outer", desc = "Next loop end" },
 						},
 						goto_previous_start = {
 							["[f"] = { query = "@call.outer", desc = "Prev function call start" },
 							["[m"] = { query = "@function.outer", desc = "Prev method/function def start" },
 							["[c"] = { query = "@class.outer", desc = "Prev class start" },
-							["[i"] = { query = "@conditional.outer", desc = "Prev conditional start" },
-							["[l"] = { query = "@loop.outer", desc = "Prev loop start" },
+							-- ["[i"] = { query = "@conditional.outer", desc = "Prev conditional start" },
+							-- ["[l"] = { query = "@loop.outer", desc = "Prev loop start" },
 						},
 						goto_previous_end = {
 							["[F"] = { query = "@call.outer", desc = "Prev function call end" },
 							["[M"] = { query = "@function.outer", desc = "Prev method/function def end" },
 							["[C"] = { query = "@class.outer", desc = "Prev class end" },
-							["[I"] = { query = "@conditional.outer", desc = "Prev conditional end" },
-							["[L"] = { query = "@loop.outer", desc = "Prev loop end" },
+							-- ["[I"] = { query = "@conditional.outer", desc = "Prev conditional end" },
+							-- ["[L"] = { query = "@loop.outer", desc = "Prev loop end" },
 						},
 					},
 				},
@@ -268,7 +268,10 @@ if true then
 			"m4xshen/hardtime.nvim",
 			lazy = false,
 			dependencies = { "MunifTanjim/nui.nvim" },
-			opts = {},
+			opts = {
+				max_count = 5,
+				disabled_keys = {},
+			},
 		},
 		-- Set which-key layout
 		{
@@ -279,6 +282,28 @@ if true then
 				preset = "modern",
 				win = {
 					no_overlap = false,
+				},
+			},
+		},
+		{
+			"saghen/blink.cmp",
+			opts = {
+				keymap = {
+					["<S-Tab>"] = { "select_prev", "fallback" },
+					["<Tab>"] = { "select_next", "fallback" },
+				},
+			},
+		},
+		{
+			"folke/flash.nvim",
+			opts = {
+				modes = {
+					-- options used when flash is activated through
+					-- `f`, `F`, `t`, `T`, `;` and `,` motions
+					char = {
+						jump_labels = true,
+						multi_line = true,
+					},
 				},
 			},
 		},
