@@ -66,6 +66,12 @@ map("n", "<C-j>", [[<cmd>lua require("tmux").move_bottom()<cr>]])
 map("n", "<C-k>", [[<cmd>lua require("tmux").move_top()<cr>]])
 map("n", "<C-l>", [[<cmd>lua require("tmux").move_right()<cr>]])
 
+-- Disable default nvim keymaps
+vim.keymap.del("n", "[l")
+vim.keymap.del("n", "]l")
+vim.keymap.del("n", "[L")
+vim.keymap.del("n", "]L")
+
 local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
 
 -- vim way: ; goes to the direction you were moving.
