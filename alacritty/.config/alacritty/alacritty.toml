@@ -9,7 +9,7 @@ decorations = "Full"
 decorations_theme_variant = "Light" # "Dark"
 
 [font]
-size = 11.0
+size = 10.0
 
 [colors.primary]
 background = "#1e1e2e"
