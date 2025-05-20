@@ -50,7 +50,7 @@ if true then
 		{
 			"folke/tokyonight.nvim",
 			opts = {
-				style = "storm",
+				style = "night",
 				transparent = true,
 				styles = {
 					sidebars = "transparent",
@@ -180,59 +180,61 @@ if true then
 				},
 			},
 		},
-		{
-			"aserowy/tmux.nvim",
-			config = function()
-				return require("tmux").setup()
-			end,
-			opts = {
-				copy_sync = {
-					-- enables copy sync. by default, all registers are synchronized.
-					-- to control which registers are synced, see the `sync_*` options.
-					enable = true,
-					-- ignore specific tmux buffers e.g. buffer0 = true to ignore the
-					-- first buffer or named_buffer_name = true to ignore a named tmux
-					-- buffer with name named_buffer_name :)
-					ignore_buffers = { empty = false },
-					-- TMUX >= 3.2: all yanks (and deletes) will get redirected to system
-					-- clipboard by tmux
-					redirect_to_clipboard = false,
-					-- offset controls where register sync starts
-					-- e.g. offset 2 lets registers 0 and 1 untouched
-					register_offset = 0,
-					-- overwrites vim.g.clipboard to redirect * and + to the system
-					-- clipboard using tmux. If you sync your system clipboard without tmux,
-					-- disable this option!
-					sync_clipboard = true,
-					-- synchronizes registers *, +, unnamed, and 0 till 9 with tmux buffers.
-					sync_registers = true,
-					-- syncs deletes with tmux clipboard as well, it is adviced to
-					-- do so. Nvim does not allow syncing registers 0 and 1 without
-					-- overwriting the unnamed register. Thus, ddp would not be possible.
-					sync_deletes = true,
-					-- syncs the unnamed register with the first buffer entry from tmux.
-					sync_unnamed = true,
-				},
-				navigation = {
-					-- cycles to opposite pane while navigating into the border
-					cycle_navigation = true,
-					-- enables default keybindings (C-hjkl) for normal mode
-					enable_default_keybindings = true,
-					-- prevents unzoom tmux when navigating beyond vim border
-					persist_zoom = false,
-				},
-				resize = {
-					-- enables default keybindings (A-hjkl) for normal mode
-					enable_default_keybindings = false,
-					-- sets resize steps for x axis
-					resize_step_x = 1,
-					-- sets resize steps for y axis
-					resize_step_y = 1,
-				},
-			},
-		},
+		{ "mrjones2014/smart-splits.nvim" },
+		-- {
+		-- "aserowy/tmux.nvim",
+		-- config = function()
+		-- 	return require("tmux").setup()
+		-- end,
+		-- opts = {
+		-- 	copy_sync = {
+		-- 		-- enables copy sync. by default, all registers are synchronized.
+		-- 		-- to control which registers are synced, see the `sync_*` options.
+		-- 		enable = true,
+		-- 		-- ignore specific tmux buffers e.g. buffer0 = true to ignore the
+		-- 		-- first buffer or named_buffer_name = true to ignore a named tmux
+		-- 		-- buffer with name named_buffer_name :)
+		-- 		ignore_buffers = { empty = false },
+		-- 		-- TMUX >= 3.2: all yanks (and deletes) will get redirected to system
+		-- 		-- clipboard by tmux
+		-- 		redirect_to_clipboard = false,
+		-- 		-- offset controls where register sync starts
+		-- 		-- e.g. offset 2 lets registers 0 and 1 untouched
+		-- 		register_offset = 0,
+		-- 		-- overwrites vim.g.clipboard to redirect * and + to the system
+		-- 		-- clipboard using tmux. If you sync your system clipboard without tmux,
+		-- 		-- disable this option!
+		-- 		sync_clipboard = true,
+		-- 		-- synchronizes registers *, +, unnamed, and 0 till 9 with tmux buffers.
+		-- 		sync_registers = true,
+		-- 		-- syncs deletes with tmux clipboard as well, it is adviced to
+		-- 		-- do so. Nvim does not allow syncing registers 0 and 1 without
+		-- 		-- overwriting the unnamed register. Thus, ddp would not be possible.
+		-- 		sync_deletes = true,
+		-- 		-- syncs the unnamed register with the first buffer entry from tmux.
+		-- 		sync_unnamed = true,
+		-- 	},
+		-- 	navigation = {
+		-- 		-- cycles to opposite pane while navigating into the border
+		-- 		cycle_navigation = true,
+		-- 		-- enables default keybindings (C-hjkl) for normal mode
+		-- 		enable_default_keybindings = true,
+		-- 		-- prevents unzoom tmux when navigating beyond vim border
+		-- 		persist_zoom = false,
+		-- 	},
+		-- 	resize = {
+		-- 		-- enables default keybindings (A-hjkl) for normal mode
+		-- 		enable_default_keybindings = false,
+		-- 		-- sets resize steps for x axis
+		-- 		resize_step_x = 1,
+		-- 		-- sets resize steps for y axis
+		-- 		resize_step_y = 1,
+		-- 	},
+		-- },
+		-- },
 		{
 			"nvim-neo-tree/neo-tree.nvim",
+			enabled = false,
 			opts = {
 				window = {
 					position = "left",
@@ -316,6 +318,41 @@ if true then
 					end)
 				end)
 			end,
+		},
+		{
+			"stevearc/oil.nvim",
+			---@module 'oil'
+			---@type oil.SetupOpts
+			opts = {
+				keymaps = {
+					["<C-s>"] = false,
+					["<C-h>"] = false,
+					["<C-l>"] = false,
+				},
+				view_options = {
+					show_hidden = true,
+				},
+			},
+			-- Send deleted files to the trash instead of permanently deleting them (:help oil-trash)
+			delete_to_trash = true,
+			-- Set to true to watch the filesystem for changes and reload oil
+			watch_for_changes = true,
+			-- Skip the confirmation popup for simple operations (:help oil.skip_confirm_for_simple_edits)
+			skip_confirm_for_simple_edits = false,
+			-- Selecting a new/moved/renamed file or directory will prompt you to save changes first
+			-- (:help prompt_save_on_select_new_entry)
+			prompt_save_on_select_new_entry = true,
+
+			keys = {
+				{ "<leader>e", ":Oil <cr>", desc = "Open Oil" },
+				{ "<leader>E", ":Oil --float<cr>", desc = "Open floating Oil" },
+				{ "-", "<CMD>Oil<CR>", desc = "Open parent directory" },
+				{ "<BS>", "<CMD>Oil<CR>", desc = "Open parent directory" },
+				-- { "<leader>ef", ":Oil<cr>", desc = "edit [f]iles" },
+			},
+			cmd = "Oil",
+			-- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+			lazy = false,
 		},
 	}
 end

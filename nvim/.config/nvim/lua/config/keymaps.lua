@@ -42,11 +42,6 @@ map("v", "<leader><leader>Y", '"+Y', { desc = "Copy to system clipboard" })
 map("v", "<leader><leader>p", [["+p]], { desc = "Paste from system clipboard" })
 map("v", "<leader><leader>P", [["+P]], { desc = "Paste from system clipboard" })
 
--- Execute
--- TODO
-map("n", "<leader>R", [[:silent !tmux send-keys -t 1 "\!\!" Enter <CR>]], { desc = "Execute last tmux command" })
--- map("n", "<leader>r", [[:silent !tmux send-keys -t 1 "python " %:p Enter <CR>]], { desc = "Execute Python" })
-
 -- Hop
 -- map("n", "s", ":silent HopChar2<cr>", { desc = "HopChar2" })
 -- map("n", "<M-s>", ":silent HopPattern<cr>", { desc = "HopPattern" })
@@ -61,10 +56,27 @@ map("v", "<M-j>", ":m '>+1<CR>gv=gv", { desc = "Move line down" })
 map("v", "<M-k>", ":m '<-2<CR>gv=gv", { desc = "Move line up" })
 
 -- TMUX movement
-map("n", "<C-h>", [[<cmd>lua require("tmux").move_left()<cr>]])
-map("n", "<C-j>", [[<cmd>lua require("tmux").move_bottom()<cr>]])
-map("n", "<C-k>", [[<cmd>lua require("tmux").move_top()<cr>]])
-map("n", "<C-l>", [[<cmd>lua require("tmux").move_right()<cr>]])
+-- map("n", "<C-h>", [[<cmd>lua require("tmux").move_left()<cr>]])
+-- map("n", "<C-j>", [[<cmd>lua require("tmux").move_bottom()<cr>]])
+-- map("n", "<C-k>", [[<cmd>lua require("tmux").move_top()<cr>]])
+-- map("n", "<C-l>", [[<cmd>lua require("tmux").move_right()<cr>]])
+
+-- Smart Splits
+map("n", "<A-h>", "<cmd> lua require('smart-splits').resize_left()<cr>")
+map("n", "<A-j>", "cmd> lua require('smart-splits').resize_down()<cr>")
+map("n", "<A-k>", "<cmd> lua require('smart-splits').resize_up()<cr>")
+map("n", "<A-l>", "<cmd> lua require('smart-splits').resize_right()<cr>")
+-- moving between splits
+map("n", "<C-h>", "<cmd> lua require('smart-splits').move_cursor_left()<cr>")
+map("n", "<C-j>", "<cmd> lua require('smart-splits').move_cursor_down()<cr>")
+map("n", "<C-k>", "<cmd> lua require('smart-splits').move_cursor_up()<cr>")
+map("n", "<C-l>", "<cmd> lua require('smart-splits').move_cursor_right()<cr>")
+map("n", "<C-\\>", "<cmd> lua require('smart-splits').move_cursor_previous()<cr>")
+-- swapping buffers between windows
+map("n", "<leader><leader>h", "<cmd> lua require('smart-splits').swap_buf_left()<cr>")
+map("n", "<leader><leader>j", "<cmd> lua require('smart-splits').swap_buf_down()<cr>")
+map("n", "<leader><leader>k", "<cmd> lua require('smart-splits').swap_buf_up()<cr>")
+map("n", "<leader><leader>l", "<cmd> lua require('smart-splits').swap_buf_right()<cr>")
 
 -- Disable default nvim keymaps
 vim.keymap.del("n", "[l")
