@@ -9,6 +9,7 @@
 # -----------------------------------------------------
 export EDITOR=nvim
 export PATH="/usr/lib/ccache/bin/:$PATH"
+export PATH=$PATH:$HOME/.cargo/bin/
 export ZSH="$HOME/.oh-my-zsh"
 
 # -----------------------------------------------------
@@ -54,6 +55,7 @@ alias vim='$EDITOR'
 alias ts='~/.config/ml4w/scripts/snapshot.sh'
 alias wifi='nmtui'
 alias cleanup='~/.config/ml4w/scripts/cleanup.sh'
+alias hx="helix"
 
 alias in='paru -S' # install package
 alias un='paru -Rns' # uninstall package
