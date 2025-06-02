@@ -249,15 +249,46 @@ if true then
 				},
 			},
 		},
-		{
-			"m4xshen/hardtime.nvim",
-			lazy = false,
-			dependencies = { "MunifTanjim/nui.nvim" },
-			opts = {
-				max_count = 5,
-				disabled_keys = {},
-			},
-		},
+		-- {
+		-- 	"folke/snacks.nvim",
+		-- 	opts = function()
+		-- 		-- Toggle the profiler
+		-- 		Snacks.toggle.profiler():map("<leader>pp")
+		-- 		-- Toggle the profiler highlights
+		-- 		Snacks.toggle.profiler_highlights():map("<leader>ph")
+		-- 	end,
+		-- 	keys = {
+		-- 		{
+		-- 			"<leader>ps",
+		-- 			function()
+		-- 				Snacks.profiler.scratch()
+		-- 			end,
+		-- 			desc = "Profiler Scratch Bufer",
+		-- 		},
+		-- 	},
+		-- },
+		-- -- optional lualine component to show captured events
+		-- -- when the profiler is running
+		-- {
+		-- 	"nvim-lualine/lualine.nvim",
+		-- 	opts = function(_, opts)
+		-- 		table.insert(opts.sections.lualine_x, Snacks.profiler.status())
+		-- 	end,
+		-- },
+		-- {
+		-- 	"m4xshen/hardtime.nvim",
+		-- 	lazy = false,
+		-- 	dependencies = { "MunifTanjim/nui.nvim" },
+		-- 	opts = {
+		-- 		max_count = 5,
+		-- 		disabled_keys = {
+		-- 			["<Up>"] = false,
+		-- 			["<Down>"] = false,
+		-- 			["<Right>"] = false,
+		-- 			["<Left>"] = false,
+		-- 		},
+		-- 	},
+		-- },
 		-- Set which-key layout
 		{
 			"folke/which-key.nvim",
@@ -353,6 +384,14 @@ if true then
 			cmd = "Oil",
 			-- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
 			lazy = false,
+		},
+		{
+			"catgoose/nvim-colorizer.lua",
+			event = "VeryLazy",
+			opts = {
+				lazy_load = true,
+				-- other setup options
+			},
 		},
 	}
 end
