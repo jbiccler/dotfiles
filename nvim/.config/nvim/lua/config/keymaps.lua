@@ -71,7 +71,7 @@ map("n", "<C-h>", "<cmd> lua require('smart-splits').move_cursor_left()<cr>")
 map("n", "<C-j>", "<cmd> lua require('smart-splits').move_cursor_down()<cr>")
 map("n", "<C-k>", "<cmd> lua require('smart-splits').move_cursor_up()<cr>")
 map("n", "<C-l>", "<cmd> lua require('smart-splits').move_cursor_right()<cr>")
-map("n", "<C-\\>", "<cmd> lua require('smart-splits').move_cursor_previous()<cr>")
+-- map("n", "<C-\\>", "<cmd> lua require('smart-splits').move_cursor_previous()<cr>")
 -- swapping buffers between windows
 map("n", "<leader><leader>h", "<cmd> lua require('smart-splits').swap_buf_left()<cr>")
 map("n", "<leader><leader>j", "<cmd> lua require('smart-splits').swap_buf_down()<cr>")
