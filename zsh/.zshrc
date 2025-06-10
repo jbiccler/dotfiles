@@ -4,6 +4,8 @@
 # INIT
 # -----------------------------------------------------
 
+source "$HOME/.zshrc_secrets"
+
 # -----------------------------------------------------
 # Exports
 # -----------------------------------------------------
@@ -17,20 +19,18 @@ export ZSH="$HOME/.oh-my-zsh"
 # -----------------------------------------------------
 plugins=(
     git
-    sudo
-    web-search
     archlinux
-    zsh-autosuggestions
+    # zsh-autosuggestions
     zsh-syntax-highlighting
-    fast-syntax-highlighting
+    fzf
     copyfile
     copybuffer
-    dirhistory
+    # dirhistory
+    rust
 )
 
 # Set-up oh-my-zsh
 source $ZSH/oh-my-zsh.sh
-
 
 
 # -----------------------------------------------------
@@ -52,10 +52,9 @@ alias lt='eza -a --tree --level=1 --icons=always'
 alias shutdown='systemctl poweroff'
 alias v='$EDITOR'
 alias vim='$EDITOR'
-alias ts='~/.config/ml4w/scripts/snapshot.sh'
 alias wifi='nmtui'
-alias cleanup='~/.config/ml4w/scripts/cleanup.sh'
 alias hx="helix"
+alias cat="bat"
 
 alias in='paru -S' # install package
 alias un='paru -Rns' # uninstall package
@@ -81,4 +80,27 @@ alias ct="cargo test"
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
+
+export FZF_CTRL_R_OPTS="
+  --color header:italic
+  --height=80%
+  --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
+  --header 'CTRL-Y: Copy command into clipboard, CTRL-/: Toggle line wrapping, CTRL-R: Toggle sorting by relevance'
+  "
+
+export FZF_CTRL_T_OPTS="
+--walker-skip .git,node_modules,target
+--preview 'bat -n --color=always {}'
+--height=80%
+--bind 'ctrl-/:change-preview-window(down|hidden|)'
+--header 'CTRL-/: Toggle preview window position'
+"
+
+export FZF_ALT_C_OPTS="
+--walker-skip .git,node_modules
+--preview 'tree -C {}'
+--height=80%
+--bind 'ctrl-/:change-preview-window(down|hidden|)'
+--header 'CTRL-/: Toggle preview window position'
+"
 
