@@ -48,6 +48,13 @@ if true then
 			end,
 		},
 		{
+			"rebelot/kanagawa.nvim",
+		},
+		{ "rose-pine/neovim", name = "rose-pine" },
+		{
+			"metalelf0/black-metal-theme-neovim",
+		},
+		{
 			"folke/tokyonight.nvim",
 			opts = {
 				style = "night",
