@@ -92,8 +92,110 @@ local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
 vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move)
 vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_opposite)
 
--- -- Optionally, make builtin f, F, t, T also repeatable with ; and ,
--- vim.keymap.set({ "n", "x", "o" }, "f", ts_repeat_move.builtin_f)
--- vim.keymap.set({ "n", "x", "o" }, "F", ts_repeat_move.builtin_F)
--- vim.keymap.set({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t)
--- vim.keymap.set({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T)
+-- Helper function to check if the current Tmux window is zoomed
+local function is_tmux_window_zoomed()
+	-- Execute tmux command to get the zoom flag for the current window.
+	-- #{window_zoomed_flag} returns '1' if a pane in the window is zoomed, '0' otherwise.
+	local zoomed_status = vim.fn.system('tmux display-message -p -F "#{window_zoomed_flag}"')
+
+	-- Trim whitespace (especially newline) and convert to boolean
+	return (string.gsub(zoomed_status, "%s+", "") == "1")
+end
+
+-- Helper function to check if Tmux is currently running
+local function is_tmux_running()
+	-- The $TMUX environment variable is set by the tmux server
+	-- in every pane attached to a session.
+	-- If this variable exists and is not empty, it indicates that
+	-- the current Neovim instance is running inside a tmux session.
+	return vim.env.TMUX ~= nil and vim.env.TMUX ~= ""
+end
+
+--  Helper function: Get the current number of active panes in the current Tmux window
+local function get_tmux_pane_count()
+	-- Execute tmux command to get the total number of panes in the current window.
+	-- #{window_panes} is a tmux format that returns the count of panes.
+	local pane_count_str = vim.fn.system('tmux display-message -p "#{window_panes}"')
+
+	-- Trim whitespace (like trailing newlines) and convert the string to a number.
+	-- If tonumber fails (e.g., tmux not running, or unexpected output), default to 0.
+	local pane_count = tonumber(pane_count_str) or 0
+	return pane_count
+end
+
+-- Defines a function to send a command to the last active Tmux pane
+local function send_to_tmux_last_pane(command_to_send)
+	-- Escapes double quotes within the command to be sent to the shell,
+	-- as the command itself will be wrapped in double quotes for tmux send-keys.
+	local escaped_command = command_to_send:gsub('"', '\\"')
+
+	-- Constructs the full tmux command
+	local pane_count = get_tmux_pane_count()
+	local tmux_command = ""
+	if pane_count == 1 then
+		vim.fn.system("tmux split-window -v")
+		tmux_command = string.format('tmux send-keys "%s" C-m', escaped_command)
+	else
+		if is_tmux_window_zoomed() then
+			-- Unzoom first to toggle and then send
+			tmux_command = string.format('tmux resize-pane -Z -t0 && tmux send-keys -t -1 "%s" C-m', escaped_command)
+		else
+			-- Second pane is already visible
+			tmux_command = string.format('tmux send-keys -t -1 "%s" C-m', escaped_command)
+		end
+	end
+
+	-- Executes the tmux command in the shell
+	-- vim.fn.system() runs the command synchronously and captures its output.
+	-- For commands where you don't need output, you could use vim.cmd("! " .. tmux_command)
+	-- or vim.loop.spawn for asynchronous execution if performance is critical for very long commands.
+	print(tmux_command)
+	vim.fn.system(tmux_command)
+	-- vim.cmd("silent !" .. tmux_command)
+end
+
+-- Defines the main Neovim function to check filetype and send command
+function _G.SendFiletypeCommandToTmux()
+	if not is_tmux_running() then
+		return print("Tmux is not running. Please start Tmux first.")
+	end
+	-- Get the current buffer's filetype
+	local filetype = vim.bo.filetype
+	local command = ""
+
+	-- Define commands based on filetype
+	if filetype == "python" then
+		command = "python3 %" -- Run the current Python file
+	elseif filetype == "sh" or filetype == "bash" then
+		command = "bash %" -- Execute the current shell script
+	elseif filetype == "markdown" then
+		command = "pandoc % -o output.html --standalone --toc --css ~/.config/pandoc/pandoc.css" -- Example: convert markdown to HTML
+	elseif filetype == "lua" then
+		command = "lua %" -- Run the current Lua file
+	elseif filetype == "go" then
+		command = "go run %" -- Run the current Go file
+	elseif filetype == "rust" then
+		command = "cargo run" -- Assumes you are in the project root; otherwise, "rustc % && ./$(basename % .rs)"
+	elseif filetype == "c" or filetype == "cpp" then
+		-- For C/C++, compile and then run.
+		local base_name = vim.fn.fnamemodify(vim.fn.expand("%:t"), ":r")
+		local compiler = (filetype == "c") and "gcc" or "g++"
+		command =
+			string.format("%s %s -o %s && ./%s", compiler, vim.fn.shellescape(vim.fn.expand("%")), base_name, base_name)
+	else
+		-- Default command if filetype is not explicitly handled
+		command = "ls -al"
+		print("No specific command for filetype '" .. filetype .. "'. Sending default command: " .. command)
+	end
+
+	-- Send the determined command to Tmux
+	if command ~= "" then
+		send_to_tmux_last_pane(command)
+	else
+		print("No command determined for filetype: " .. filetype)
+	end
+end
+
+-- Exec file type specific command in last tmux pane
+-- vim.keymap.del("n", "<leader>cx")
+map("n", "<leader>cx", "<cmd>lua SendFiletypeCommandToTmux()<CR>", { desc = "Send filetype-specific command to Tmux" })
