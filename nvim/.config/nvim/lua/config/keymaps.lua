@@ -199,3 +199,4 @@ end
 -- Exec file type specific command in last tmux pane
 -- vim.keymap.del("n", "<leader>cx")
 map("n", "<leader>cx", "<cmd>lua SendFiletypeCommandToTmux()<CR>", { desc = "Send filetype-specific command to Tmux" })
+
