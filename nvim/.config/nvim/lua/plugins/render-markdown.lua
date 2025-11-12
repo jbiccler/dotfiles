@@ -1,7 +1,8 @@
 return {
     {
-        -- Make sure to set this up properly if you have lazy=true
-        "MeanderingProgrammer/render-markdown.nvim",
+      enabled = true,
+      "MeanderingProgrammer/render-markdown.nvim",
+      dependencies = { 'nvim-treesitter/nvim-treesitter' },
         opts = {
             file_types = { "markdown", "Avante" },
         },
