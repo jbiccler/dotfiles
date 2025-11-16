@@ -20,7 +20,7 @@ export ZSH="$HOME/.oh-my-zsh"
 plugins=(
     git
     archlinux
-    # zsh-autosuggestions
+    zsh-autosuggestions
     zsh-syntax-highlighting
     fzf
     copyfile
@@ -28,6 +28,7 @@ plugins=(
     # dirhistory
     rust
 )
+
 
 # Set-up oh-my-zsh
 source $ZSH/oh-my-zsh.sh
