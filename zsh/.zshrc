@@ -1,4 +1,15 @@
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
 
+if command -v pokego >/dev/null; then
+    pokego --no-title -r 1,3,6
+elif command -v pokemon-colorscripts >/dev/null; then
+    pokemon-colorscripts --no-title -r 1,3,6
+elif command -v fastfetch >/dev/null; then
+    fastfetch --logo-type kitty
+fi
 
 # -----------------------------------------------------
 # INIT
@@ -12,26 +23,35 @@ source "$HOME/.zshrc_secrets"
 export EDITOR=nvim
 export PATH="/usr/lib/ccache/bin/:$PATH"
 export PATH=$PATH:$HOME/.cargo/bin/
-export ZSH="$HOME/.oh-my-zsh"
+# export ZSH="$HOME/.oh-my-zsh"
 
 # -----------------------------------------------------
 # oh-myzsh plugins
 # -----------------------------------------------------
-plugins=(
-    git
-    archlinux
-    zsh-autosuggestions
-    zsh-syntax-highlighting
-    fzf
-    copyfile
-    copybuffer
-    # dirhistory
-    rust
-)
-
+# plugins=(
+#     git
+#     archlinux
+#     zsh-autosuggestions
+#     zsh-syntax-highlighting
+#     fzf
+#     copyfile
+#     copybuffer
+#     # dirhistory
+#     rust
+# )
 
 # Set-up oh-my-zsh
-source $ZSH/oh-my-zsh.sh
+# source $ZSH/oh-my-zsh.sh
+
+# -----------------------------------------------------
+# Zinit plugins
+# -----------------------------------------------------
+
+# Zinit must be installed first
+# Load zsh plugins with Zinit
+zinit light zdharma-continuum/fast-syntax-highlighting
+zinit light zsh-users/zsh-autosuggestions
+zinit light junegunn/fzf
 
 
 # -----------------------------------------------------
