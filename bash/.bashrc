@@ -14,6 +14,7 @@ bind '"\e[B":history-search-forward'
 
 export EDITOR=nvim
 export PATH=$PATH:"~/.cargo/bin/"
+export ZDOTDIR="$HOME"
 
 # -----------------------------------------------------
 # ALIASES

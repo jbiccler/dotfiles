@@ -23,6 +23,7 @@ source "$HOME/.zshrc_secrets"
 export EDITOR=nvim
 export PATH="/usr/lib/ccache/bin/:$PATH"
 export PATH=$PATH:$HOME/.cargo/bin/
+export ZDOTDIR="$HOME"
 # export ZSH="$HOME/.oh-my-zsh"
 
 # -----------------------------------------------------
