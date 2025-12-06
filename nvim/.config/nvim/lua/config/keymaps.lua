@@ -86,11 +86,11 @@ vim.keymap.del("n", "]l")
 vim.keymap.del("n", "[L")
 vim.keymap.del("n", "]L")
 
-local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
-
--- vim way: ; goes to the direction you were moving.
-vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move)
-vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_opposite)
+-- local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
+--
+-- -- vim way: ; goes to the direction you were moving.
+-- vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move)
+-- vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_opposite)
 
 -- Helper function to check if the current Tmux window is zoomed
 local function is_tmux_window_zoomed()
@@ -199,4 +199,3 @@ end
 -- Exec file type specific command in last tmux pane
 -- vim.keymap.del("n", "<leader>cx")
 map("n", "<leader>cx", "<cmd>lua SendFiletypeCommandToTmux()<CR>", { desc = "Send filetype-specific command to Tmux" })
-

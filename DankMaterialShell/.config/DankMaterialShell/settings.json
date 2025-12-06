@@ -1,7 +1,7 @@
 {
   "currentThemeName": "dynamic",
-  "customThemeFile": "",
-  "matugenScheme": "scheme-tonal-spot",
+  "customThemeFile": "/home/jaron/.config/DankMaterialShell/theme_rose-pine.json",
+  "matugenScheme": "scheme-vibrant",
   "runUserMatugenTemplates": true,
   "matugenTargetMonitor": "",
   "dankBarTransparency": 1,
@@ -105,7 +105,6 @@
   "lockDateFormat": "",
   "mediaSize": 1,
   "dankBarLeftWidgets": [
-    "launcherButton",
     "workspaceSwitcher",
     "focusedWindow"
   ],
@@ -162,7 +161,7 @@
   "useAutoLocation": true,
   "weatherEnabled": true,
   "networkPreference": "auto",
-  "vpnLastConnected": "",
+  "vpnLastConnected": "302f2720-a07b-4490-9261-25a07270f466",
   "iconTheme": "System Default",
   "launcherLogoMode": "apps",
   "launcherLogoCustomPath": "",
@@ -248,6 +247,13 @@
   "notificationTimeoutCritical": 0,
   "notificationPopupPosition": 0,
   "osdAlwaysShowValue": true,
+  "osdPosition": 5,
+  "osdVolumeEnabled": true,
+  "osdBrightnessEnabled": true,
+  "osdIdleInhibitorEnabled": true,
+  "osdMicMuteEnabled": true,
+  "osdCapsLockEnabled": true,
+  "osdPowerProfileEnabled": true,
   "powerActionConfirm": true,
   "powerMenuActions": [
     "reboot",
@@ -268,6 +274,7 @@
   "updaterUseCustomCommand": false,
   "updaterCustomCommand": "",
   "updaterTerminalAdditionalParams": "",
+  "displayNameMode": "system",
   "screenPreferences": {},
   "showOnLastDisplay": {},
   "configVersion": 1

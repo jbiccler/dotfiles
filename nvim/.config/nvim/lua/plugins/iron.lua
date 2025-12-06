@@ -1,23 +1,24 @@
 return {
-    "vigemus/iron.nvim",
-    event = "VeryLazy",
-    opts = function()
-        return {
-            config = {
-                -- Whether a repl should be discarded or not
-                scratch_repl = true,
-                -- Your repl definitions come here
-                repl_definition = {
-                    python = require("iron.fts.python").python,
-                    sh = {
-                        command = { "fish" },
-                    },
-                },
-                repl_open_cmd = require("iron.view").split.vertical.botright(0.4),
-                ignore_blank_lines = true,
-            },
-        }
-    end,
+	"vigemus/iron.nvim",
+	enabled = false,
+	event = "VeryLazy",
+	opts = function()
+		return {
+			config = {
+				-- Whether a repl should be discarded or not
+				scratch_repl = true,
+				-- Your repl definitions come here
+				repl_definition = {
+					python = require("iron.fts.python").python,
+					sh = {
+						command = { "fish" },
+					},
+				},
+				repl_open_cmd = require("iron.view").split.vertical.botright(0.4),
+				ignore_blank_lines = true,
+			},
+		}
+	end,
     -- stylua: ignore
     keys = {
         { "<leader>r",     function() end,                                                 mode = { "n", "x" },       desc = "+REPL" },
@@ -40,8 +41,8 @@ return {
         { "<leader>rF",    "<cmd>IronFocus<cr>",                                           desc = "Focus" },
         { "<leader>rH",    "<cmd>IronHide<cr>",                                            desc = "Hide" },
     },
-    config = function(_, opts)
-        local iron = require("iron.core")
-        iron.setup(opts)
-    end,
+	config = function(_, opts)
+		local iron = require("iron.core")
+		iron.setup(opts)
+	end,
 }

@@ -19,6 +19,42 @@
     "include_ignored": "smart"
   },
   "icon_theme": "Catppuccin Frappé",
+  "theme_overrides": {
+    "Tokyo Night": {
+      "panel.background": "#000000",
+      "background": "#000000",
+      "element.background": "#000000",
+      "editor.background": "#000000",
+      "editor.gutter.background": "#000000",
+      "editor.subheader.background": "#000000",
+      "conflict.background": "#000000",
+      "created.background": "#000000",
+      "deleted.background": "#000000",
+      "error.background": "#000000",
+      "hidden.background": "#000000",
+      "hint.background": "#000000",
+      "ignored.background": "#000000",
+      "info.background": "#000000",
+      "modified.background": "#000000",
+      "predictive.background": "#000000",
+      "renamed.background": "#000000",
+      "success.background": "#000000",
+      "unreachable.background": "#000000",
+      "warning.background": "#000000",
+      "ghost_element.background": "#000000",
+      //
+      "surface.background": "#000000",
+      "status_bar.background": "#000000",
+      "title_bar.background": "#000000",
+      "title_bar.inactive_background": "#000000",
+      "toolbar.background": "#000000",
+      "tab_bar.background": "#000000",
+      "tab.inactive_background": "#000000",
+      "terminal.background": "#000000",
+      "terminal.ansi.background": "#000000",
+      "border": "#7aa2f766"
+    }
+  },
   "agent": {
     "model_parameters": [],
     "default_model": {
@@ -70,7 +106,15 @@
   },
   "format_on_save": "on",
   // LSP
-  "lsp": {},
+  "lsp": {
+    "rust-analyzer": {
+      "initialization_options": {
+        "check": {
+          "command": "clippy" // rust-analyzer.check.command (default: "check")
+        }
+      }
+    }
+  },
   "languages": {
     "Python": {
       "formatter": { "language_server": { "name": "ruff" } },

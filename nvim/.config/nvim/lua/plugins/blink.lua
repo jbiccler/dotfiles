@@ -9,7 +9,9 @@ return {
 		-- },
 		dependencies = {
 			{
-				"giuxtaposition/blink-cmp-copilot",
+				-- "giuxtaposition/blink-cmp-copilot",
+				-- "Exafunction/windsurf.nvim",
+				-- "monkoose/neocodeium",
 			},
 		},
 		opts = {
@@ -20,28 +22,40 @@ return {
 				["<C-j>"] = { "select_next", "fallback" },
 			},
 			sources = {
-				default = { "lsp", "path", "snippets", "buffer", "copilot" },
+				default = {
+					"lsp",
+					"path",
+					"snippets",
+					"buffer",
+					-- "copilot",
+					-- "codeium",
+					-- "neocodeium",
+				},
 				providers = {
-					copilot = {
-						name = "copilot",
-						module = "blink-cmp-copilot",
-						score_offset = 100,
-						async = true,
-						transform_items = function(_, items)
-							local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
-							local kind_idx = #CompletionItemKind + 1
-							CompletionItemKind[kind_idx] = "Copilot"
-							for _, item in ipairs(items) do
-								item.kind = kind_idx
-							end
-							return items
-						end,
-					},
+					-- copilot = {
+					-- 	name = "copilot",
+					-- 	module = "blink-cmp-copilot",
+					-- 	score_offset = 100,
+					-- 	async = true,
+					-- 	transform_items = function(_, items)
+					-- 		local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
+					-- 		local kind_idx = #CompletionItemKind + 1
+					-- 		CompletionItemKind[kind_idx] = "Copilot"
+					-- 		for _, item in ipairs(items) do
+					-- 			item.kind = kind_idx
+					-- 		end
+					-- 		return items
+					-- 	end,
+					-- },
+					-- codeium = { name = "Codeium", module = "codeium.blink", async = true },
+					-- neocodeium = { name = "Neocodeium", async = true },
 				},
 			},
 			appearance = {
 				kind_icons = {
-					Copilot = "",
+					-- Copilot = "",
+					-- Codeium = "",
+					Neocodeium = "",
 					Text = "󰉿",
 					Method = "󰊕",
 					Function = "󰊕",
