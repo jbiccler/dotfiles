@@ -11,12 +11,12 @@
   "ui_font_size": 16,
   "buffer_font_size": 14,
   "buffer_font_features": {
-    "calt": false // Disable ligatures
+    "calt": false, // Disable ligatures
   },
 
   "file_finder": {
     "modal_max_width": "large",
-    "include_ignored": "smart"
+    "include_ignored": "smart",
   },
   "icon_theme": "Catppuccin Frappé",
   "theme_overrides": {
@@ -52,57 +52,57 @@
       "tab.inactive_background": "#000000",
       "terminal.background": "#000000",
       "terminal.ansi.background": "#000000",
-      "border": "#7aa2f766"
-    }
+      "border": "#7aa2f766",
+    },
   },
   "agent": {
     "model_parameters": [],
     "default_model": {
       "provider": "copilot_chat",
-      "model": "gpt-4.1"
+      "model": "gpt-4.1",
     },
-    "dock": "right"
+    "dock": "right",
   },
   "theme": "Tokyo Night",
   "git_panel": {
-    "dock": "left"
+    "dock": "left",
   },
   "git": { "inline_blame": { "enabled": false } },
   "features": {
     // "edit_prediction_provider": "zed"
-    "edit_prediction_provider": "supermaven"
+    "edit_prediction_provider": "zed",
   },
   "base_keymap": "VSCode",
   // Vim mode settings
   "vim_mode": true,
   "vim": {
-    "use_system_clipboard": "never"
+    "use_system_clipboard": "never",
   },
   // use relative line numbers
   "relative_line_numbers": "enabled",
   "tab_bar": {
-    "show": true
+    "show": true,
   },
   "scrollbar": {
-    "show": "never"
+    "show": "never",
   },
   // Only show error on tab
   "tabs": {
-    "show_diagnostics": "errors"
+    "show_diagnostics": "errors",
   },
   // Indentation, rainbow indentation
   "indent_guides": {
     "enabled": true,
-    "coloring": "indent_aware"
+    "coloring": "indent_aware",
   },
   // NOTE: Zen mode, refer https://github.com/zed-industries/zed/issues/4382 when it's resolved
   "centered_layout": {
     "left_padding": 0.15,
-    "right_padding": 0.15
+    "right_padding": 0.15,
   },
   // Inlay hints preconfigured by Zed: Go, Rust, Typescript and Svelte
   "inlay_hints": {
-    "enabled": true
+    "enabled": true,
   },
   "format_on_save": "on",
   // LSP
@@ -110,28 +110,28 @@
     "rust-analyzer": {
       "initialization_options": {
         "check": {
-          "command": "clippy" // rust-analyzer.check.command (default: "check")
-        }
-      }
-    }
+          "command": "clippy", // rust-analyzer.check.command (default: "check")
+        },
+      },
+    },
   },
   "languages": {
     "Python": {
       "formatter": { "language_server": { "name": "ruff" } },
-      "language_servers": ["pyright", "ruff"]
-    }
+      "language_servers": ["pyright", "ruff"],
+    },
   },
   // Use zed commit editor
   "terminal": {
     "font_size": 14.0,
     "env": {
-      "EDITOR": "zed --wait"
-    }
+      "EDITOR": "zed --wait",
+    },
   },
   // File syntax highlighting
   "file_types": {
     "Dockerfile": ["Dockerfile", "Dockerfile.*"],
-    "JSON": ["json", "jsonc", "*.code-snippets"]
+    "JSON": ["json", "jsonc", "*.code-snippets"],
   },
   // File scan exclusions, hide on the file explorer and search
   "file_scan_exclusions": [
@@ -155,34 +155,34 @@
     "**/.tap",
     "**/.nyc_output",
     "**/report",
-    "**/node_modules"
+    "**/node_modules",
   ],
   // Turn off telemetry
   "telemetry": {
     "diagnostics": false,
-    "metrics": false
+    "metrics": false,
   },
   // Inline diagnostircs
   "diagnostics": {
     "inline": {
       "enabled": true,
-      "max_severity": null // same values as the `diagnostics_max_severity` from the editor settings
-    }
+      "max_severity": null, // same values as the `diagnostics_max_severity` from the editor settings
+    },
   },
   // Move all panel to the right
   "project_panel": {
     "button": true,
     "dock": "left",
-    "git_status": true
+    "git_status": true,
   },
   "outline_panel": {
-    "dock": "left"
+    "dock": "left",
   },
   "collaboration_panel": {
-    "dock": "right"
+    "dock": "right",
   },
   // Move some unnecessary panels to the left
   "notification_panel": {
-    "dock": "right"
-  }
+    "dock": "right",
+  },
 }
