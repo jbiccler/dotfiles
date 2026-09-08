@@ -1,6 +1,6 @@
 return {
 	"NickvanDyke/opencode.nvim",
-	enabled = false,
+	enabled = true,
 	dependencies = {
 		-- Recommended for `ask()`, and required for `toggle()` — otherwise optional
 		{ "folke/snacks.nvim", opts = { input = { enabled = true } } },
@@ -13,7 +13,7 @@ return {
 		-- Required for `opts.auto_reload`
 		vim.opt.autoread = true
 
-		-- Recommended/example keymaps
+		-- Recommended/example eymaps
 		vim.keymap.set("n", "<leader>at", function()
 			require("opencode").toggle()
 		end, { desc = "Toggle embedded" })
