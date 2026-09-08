@@ -96,6 +96,10 @@ alias c23="g++ -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -Werror -pe
 alias c20="g++ -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -Werror -pedantic-errors -ggdb -std=c++20"
 alias c="g++ -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -Werror -pedantic-errors -ggdb"
 
+alias cppdebug='cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Debug'
+alias cpprelease='cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release'
+alias cppb='cmake --build build'
+
 alias cr="cargo run"
 alias cb="cargo build"
 alias ct="cargo test"
@@ -125,4 +129,9 @@ export FZF_ALT_C_OPTS="
 --bind 'ctrl-/:change-preview-window(down|hidden|)'
 --header 'CTRL-/: Toggle preview window position'
 "
+
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/home/jaron/.lmstudio/bin"
+# End of LM Studio CLI section
 

@@ -66,3 +66,8 @@ alias gcredential="git config credential.helper store"
 eval "$(starship init bash)"
 eval "$(zoxide init bash)"
 . "$HOME/.cargo/env"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/home/jaron/.lmstudio/bin"
+# End of LM Studio CLI section
+
