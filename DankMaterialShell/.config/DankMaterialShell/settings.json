@@ -1,8 +1,21 @@
 {
-  "currentThemeName": "dynamic",
-  "currentThemeCategory": "generic",
-  "customThemeFile": "/home/jaron/.config/DankMaterialShell/theme_rose-pine.json",
-  "registryThemeVariants": {},
+  "currentThemeName": "custom",
+  "currentThemeCategory": "registry",
+  "customThemeFile": "/home/jaron/.config/DankMaterialShell/themes/catppuccin/theme.json",
+  "registryThemeVariants": {
+    "amoledBlack": {
+      "dark": {
+        "flavor": "black",
+        "accent": "white"
+      }
+    },
+    "catppuccin": {
+      "dark": {
+        "flavor": "mocha",
+        "accent": "blue"
+      }
+    }
+  },
   "matugenScheme": "scheme-vibrant",
   "matugenContrast": 0,
   "runUserMatugenTemplates": true,
@@ -622,7 +635,8 @@
         },
         {
           "id": "keyboard_layout_name",
-          "enabled": true
+          "enabled": true,
+          "keyboardLayoutNameCompactMode": true
         },
         {
           "id": "notificationButton",
@@ -657,7 +671,8 @@
       "openOnOverview": false,
       "visible": true,
       "popupGapsAuto": true,
-      "popupGapsManual": 4
+      "popupGapsManual": 4,
+      "shadowIntensity": 0
     }
   ],
   "desktopClockEnabled": false,
