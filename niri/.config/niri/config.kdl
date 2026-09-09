@@ -66,6 +66,7 @@ input {
             // For example:
             // layout "us,ru"
             layout "us"
+            variant "altgr-intl"
             // options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
 
             // If this section is empty, niri will fetch xkb settings
@@ -641,3 +642,4 @@ include "dms/alttab.kdl"
 include "dms/binds.kdl"
 include "dms/outputs.kdl"
 include "dms/cursor.kdl"
+include "dms/windowrules.kdl"
